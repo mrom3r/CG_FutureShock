@@ -1,4 +1,4 @@
-#include "mainLoop.hpp"
+#include "gameLoop.hpp"
 
 // Include standard headers
 #include <cstdio>
@@ -16,14 +16,6 @@ using namespace glm;
 #include <common/shader.hpp>
 #include <iostream>
 
-glm::vec2 triangleVertex1{-0.5f, -0.5f};
-glm::vec2 triangleVertex2{0.5f, -0.5f};
-glm::vec2 triangleVertex3{0.0f, 0.5f};
-
-glm::mat2 myR{1.0f, 0.0f,
-              0.0f, 1.0f};
-glm::vec2 myT{0.2f, 0.2f};
-
 int main() {
     //Initialize window
     bool windowInitialized = initializeWindow();
@@ -39,12 +31,6 @@ int main() {
 
     //start animation loop until escape key is pressed
     do {
-        myR += glm::mat2 {0.01f, 0.0f,0.0f, 0.01f};
-        //myT += glm::vec2{0.001f, 0.01f};
-
-        triangleVertex1 = myR * triangleVertex1 + myT;
-        triangleVertex2 = myR * triangleVertex2 + myT;
-        triangleVertex3 = myR * triangleVertex3 + myT;
 
         updateAnimationLoop();
     } // Check if the ESC key was pressed or the window was closed
@@ -136,6 +122,15 @@ bool initializeVertexBuffer() {
     glBindVertexArray(VertexArrayID);
 
     vertexBuffer_size = 3;
+
+    static glm::mat2 myR{1.0f, 0.0f,
+                         0.0f, 1.0f};
+
+    static glm::vec2 myT{0.0f, 0.0f};
+
+    static glm::vec2 triangleVertex1{-0.5f, -0.5f};
+    static glm::vec2 triangleVertex2{0.5f, -0.5f};
+    static glm::vec2 triangleVertex3{0.0f, 0.5f};
 
     triangleVertex1 = myR * triangleVertex1 + myT;
     triangleVertex2 = myR * triangleVertex2 + myT;

@@ -55,10 +55,10 @@ add_definitions(
 
 # User game
 add_executable(game
-		game/mainLoop.cpp
-		game/mainLoop.hpp
-		game/shader/FragmentShader.fragmentshader
-		game/shader/VertexShader.vertexshader
+	game/gameLoop.cpp
+	game/gameLoop.hpp
+	game/shader/FragmentShader.fragmentshader
+	game/shader/VertexShader.vertexshader
 	common/shader.cpp
 	common/shader.hpp
 )

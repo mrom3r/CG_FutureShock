@@ -7,13 +7,21 @@
 #include <glm/vec2.hpp>
 #include <glm/detail/type_mat2x2.hpp>
 
-//some global variables for handling the vertex buffer
-GLuint vertexBuffer;
-GLuint VertexArrayID;
-GLint vertexBuffer_size;
+//
+GLfloat g_vertex_buffer_data[]{
+        -0.5, 0.5, 0.0f,
+        0.5, -0.5, 0.0f,
+        0.0, 0.0, 0.0f,
+};
 
-//program ID of the shaders, required for handling the shaders with OpenGL
-GLuint programID;
+
+// some global variables for handling the vertex buffer
+GLuint vertexBuffer{};
+GLuint VertexArrayID{};
+GLint vertexBuffer_size{};
+
+// program ID of the shaders, required for handling the shaders with OpenGL
+GLuint programID{};
 
 int main(); //<<< main function, called at startup
 void updateAnimationLoop(); //<<< updates the animation loop

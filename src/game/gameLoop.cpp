@@ -31,6 +31,18 @@ int main() {
 
     //start animation loop until escape key is pressed
     do {
+        static glm::mat2 myR{1.0f, 0.0f,
+                             0.0f, 1.0f};
+
+        static glm::vec2 myT{0.0f, 0.0f};
+
+        static glm::vec2 triangleVertex1{-0.5f, -0.5f};
+        static glm::vec2 triangleVertex2{0.5f, -0.5f};
+        static glm::vec2 triangleVertex3{0.0f, 0.5f};
+
+        triangleVertex1 = myR * triangleVertex1 + myT;
+        triangleVertex2 = myR * triangleVertex2 + myT;
+        triangleVertex3 = myR * triangleVertex3 + myT;
 
         updateAnimationLoop();
     } // Check if the ESC key was pressed or the window was closed
@@ -63,7 +75,7 @@ void updateAnimationLoop() {
             (void *) nullptr    // array buffer offset
     );
 
-    // Draw the triangle !
+    // Draw the triangle
     glDrawArrays(GL_TRIANGLES, 0, vertexBuffer_size); // 3 indices starting at 0 -> 1 triangle
 
     glDisableVertexAttribArray(0);
@@ -86,7 +98,7 @@ bool initializeWindow() {
     glfwWindowHint(GLFW_SAMPLES, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // only for macOS
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Open a window and create its OpenGL context
@@ -123,32 +135,6 @@ bool initializeVertexBuffer() {
 
     vertexBuffer_size = 3;
 
-    static glm::mat2 myR{1.0f, 0.0f,
-                         0.0f, 1.0f};
-
-    static glm::vec2 myT{0.0f, 0.0f};
-
-    static glm::vec2 triangleVertex1{-0.5f, -0.5f};
-    static glm::vec2 triangleVertex2{0.5f, -0.5f};
-    static glm::vec2 triangleVertex3{0.0f, 0.5f};
-
-    triangleVertex1 = myR * triangleVertex1 + myT;
-    triangleVertex2 = myR * triangleVertex2 + myT;
-    triangleVertex3 = myR * triangleVertex3 + myT;
-
-    static GLfloat g_vertex_buffer_data[]{
-            triangleVertex1[0], triangleVertex1[1], 0.0f,
-            triangleVertex2[0], triangleVertex2[1], 0.0f,
-            triangleVertex3[0], triangleVertex3[1], 0.0f,
-    };
-
-    g_vertex_buffer_data[0] = triangleVertex1[0];
-    g_vertex_buffer_data[1] = triangleVertex1[1];
-    g_vertex_buffer_data[2] = triangleVertex2[0];
-    g_vertex_buffer_data[3] = triangleVertex2[1];
-    g_vertex_buffer_data[4] = triangleVertex3[0];
-    g_vertex_buffer_data[5] = triangleVertex3[1];
-
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
@@ -157,7 +143,6 @@ bool initializeVertexBuffer() {
 }
 
 bool cleanupVertexBuffer() {
-    // Cleanup VBO
     glDeleteBuffers(1, &vertexBuffer);
     glDeleteVertexArrays(1, &VertexArrayID);
     return true;

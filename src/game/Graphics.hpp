@@ -19,7 +19,7 @@
 #include <cstdio>
 #include <common/shader.hpp>
 #include <iostream>
-#include "game/structs/WindowPosition2f.hpp"
+#include "game/structs/Position.hpp"
 
 class Graphics {
 
@@ -46,7 +46,7 @@ class Graphics {
 
     void drawEnvironment();
 
-    void drawTriangle(WindowPosition2f first, WindowPosition2f second, WindowPosition2f third) const;
+    void drawTriangle(Position first, Position second, Position third) const;
 
 public:
     Graphics();

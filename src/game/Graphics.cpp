@@ -104,7 +104,7 @@ void Graphics::drawEnvironment() {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
-void Graphics::drawTriangle(WindowPosition2f first, WindowPosition2f second, WindowPosition2f third) const {
+void Graphics::drawTriangle(Position first, Position second, Position third) const {
     // Use shader
     glUseProgram(program_ID);
 

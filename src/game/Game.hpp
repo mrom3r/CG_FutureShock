@@ -2,11 +2,9 @@
 #ifndef FUTURESHOCK_GAME_HPP
 #define FUTURESHOCK_GAME_HPP
 
-#include "game/structs/WindowPosition2f.hpp"
+#include "game/structs/Position.hpp"
 
 class Game {
-
-    WindowPosition2f player_position{};
 
 public:
 

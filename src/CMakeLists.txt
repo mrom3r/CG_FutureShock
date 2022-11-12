@@ -58,7 +58,7 @@ add_executable(
 	common/shader.hpp
 	game/GameLoop.cpp
 	game/GameLoop.hpp
-		game/Main.cpp)
+		game/Main.cpp game/Vertex2f.hpp)
 
 target_link_libraries(FutureShock
 	${ALL_LIBS}

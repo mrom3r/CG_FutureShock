@@ -1,3 +1,4 @@
+
 #ifndef PLAYGROUND_H
 #define PLAYGROUND_H
 
@@ -18,14 +19,9 @@
 #include <cstdio>
 #include <common/shader.hpp>
 #include <iostream>
+#include "Vertex2f.hpp"
 
 class Graphics {
-
-    GLfloat vertex_buffer_data[9]{
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            0.0f, 1.0f, 0.0f,
-    };
 
     GLuint vertex_buffer_size{};
     GLuint vertex_buffer_object{};
@@ -33,8 +29,6 @@ class Graphics {
 
     // program ID of the shaders, required for handling the shaders with OpenGL
     GLuint program_ID{};
-
-    static void drawTest();
 
     // initializes the window using GLFW and GLEW
     static bool initializeWindow();
@@ -46,7 +40,11 @@ class Graphics {
     bool cleanupVertexBuffer();
 
     // closes the OpenGL window and terminates GLFW
-    static bool closeWindow();
+    bool closeWindow();
+
+    void drawEnvironment();
+
+    void drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) const;
 
 public:
     Graphics();

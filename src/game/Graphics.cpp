@@ -1,3 +1,4 @@
+
 #include "Graphics.hpp"
 
 GLFWwindow *window;
@@ -21,11 +22,9 @@ Graphics::Graphics() {
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // Use our shader
-        glUseProgram(program_ID);
-        glBindVertexArray(vertex_array_object);
-
-        drawTest();
+        drawEnvironment();
+        drawTriangle({-1.0, -1.0}, {0.0, 0.0}, {-1.0, 0.0});
+        drawTriangle({0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0});
 
         // Swap buffers
         glfwSwapBuffers(window);
@@ -87,17 +86,6 @@ void Graphics::initializeVertexBuffer() {
 
     glBindVertexArray(vertex_array_object);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object);
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
-    glVertexAttribPointer(
-            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-            3,                  // size
-            GL_FLOAT,           // type
-            GL_FALSE,           // normalized?
-            0,                  // stride
-            (void *) nullptr    // array buffer offset
-    );
-    glEnableVertexAttribArray(0);
 }
 
 bool Graphics::cleanupVertexBuffer() {
@@ -111,9 +99,31 @@ bool Graphics::closeWindow() {
     return true;
 }
 
-void Graphics::drawTest() {
+void Graphics::drawEnvironment() {
     // Dark blue background
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+}
+
+void Graphics::drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) const {
+    // Use shader
+    glUseProgram(program_ID);
+
+    GLfloat vertex_buffer_data[] {
+        first.x, first.y, 0.0f,
+        second.x, second.y, 0.0f,
+        third.x, third.y, 0.0f
+    };
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
+    glVertexAttribPointer(
+            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+            3,                  // size
+            GL_FLOAT,           // type
+            GL_FALSE,           // normalized?
+            0,                  // stride
+            (void *) nullptr    // array buffer offset
+    );
+    glEnableVertexAttribArray(0);
 
     // Draw the triangle
     glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle

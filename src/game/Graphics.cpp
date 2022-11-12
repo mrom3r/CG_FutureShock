@@ -57,8 +57,8 @@ bool Graphics::initializeWindow() {
     // Open a window and create its OpenGL context
     window = glfwCreateWindow(1024, 768, "FutureShock", nullptr, nullptr);
     if (window == nullptr) {
-        fprintf(stderr,"Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible."
-                       " Try the 2.1 version of the tutorials.\n");
+        fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible."
+                        " Try the 2.1 version of the tutorials.\n");
         getchar();
         glfwTerminate();
         return false;
@@ -104,14 +104,14 @@ void Graphics::drawEnvironment() {
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
-void Graphics::drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) const {
+void Graphics::drawTriangle(Position2f first, Position2f second, Position2f third) const {
     // Use shader
     glUseProgram(program_ID);
 
-    GLfloat vertices[] {
-        first.x, first.y, 0.0f,
-        second.x, second.y, 0.0f,
-        third.x, third.y, 0.0f
+    GLfloat vertices[]{
+            first.x, first.y, 0.0f,
+            second.x, second.y, 0.0f,
+            third.x, third.y, 0.0f
     };
 
     glEnableVertexAttribArray(0);

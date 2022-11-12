@@ -19,7 +19,7 @@
 #include <cstdio>
 #include <common/shader.hpp>
 #include <iostream>
-#include "Vertex2f.hpp"
+#include "Position2f.hpp"
 
 class Graphics {
 
@@ -46,7 +46,7 @@ class Graphics {
 
     void drawEnvironment();
 
-    void drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) const;
+    void drawTriangle(Position2f first, Position2f second, Position2f third) const;
 
 public:
     Graphics();

@@ -31,7 +31,18 @@ int main() {
 
     //start animation loop until escape key is pressed
     do {
+        // Clear the screen
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Use our shader
+        glUseProgram(program_ID);
+        glBindVertexArray(vertex_array_object);
+
         drawGame();
+
+        // Swap buffers
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     } // Check if the ESC key was pressed or the window was closed
     while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
 
@@ -80,31 +91,17 @@ bool initializeWindow() {
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-    // Dark blue background
-    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
     return true;
 }
 
 bool initializeVertexBuffer() {
-    glGenVertexArrays(1, &vertex_array_ID);
-    glBindVertexArray(vertex_array_ID);
-    glGenBuffers(1, &vertex_buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+    glGenVertexArrays(1, &vertex_array_object);
+    glGenBuffers(1, &vertex_buffer_object);
+
+    glBindVertexArray(vertex_array_object);
+    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_object);
+
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
-
-    return true;
-}
-
-void drawGame() {
-    // Clear the screen
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Use our shader
-    glUseProgram(program_ID);
-
-    // 1rst attribute buffer : vertices
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glVertexAttribPointer(
             0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
             3,                  // size
@@ -113,24 +110,26 @@ void drawGame() {
             0,                  // stride
             (void *) nullptr    // array buffer offset
     );
+    glEnableVertexAttribArray(0);
 
-    // Draw the triangle
-    glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
-
-    glDisableVertexAttribArray(0);
-
-    // Swap buffers
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+    return true;
 }
 
 bool cleanupVertexBuffer() {
-    glDeleteBuffers(1, &vertex_buffer);
-    glDeleteVertexArrays(1, &vertex_array_ID);
+    glDeleteBuffers(1, &vertex_buffer_object);
+    glDeleteVertexArrays(1, &vertex_array_object);
     return true;
 }
 
 bool closeWindow() {
     glfwTerminate();
     return true;
+}
+
+void drawGame() {
+    // Dark blue background
+    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+
+    // Draw the triangle
+    glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
 }

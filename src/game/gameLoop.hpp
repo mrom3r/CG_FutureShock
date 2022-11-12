@@ -14,9 +14,9 @@ static const GLfloat vertex_buffer_data[] = {
         0.0f,  1.0f, 0.0f,
 };
 
-// some global variables for handling the vertex buffer
-GLuint vertex_buffer{};
-GLuint vertex_array_ID{};
+GLuint vertex_buffer_size{};
+GLuint vertex_buffer_object{};
+GLuint vertex_array_object{};
 
 // program ID of the shaders, required for handling the shaders with OpenGL
 GLuint program_ID{};

@@ -83,8 +83,8 @@ bool Graphics::initializeWindow() {
 
 void Graphics::framebuffer_size_callback(GLFWwindow *, int width, int height) {
     // keep display dimension 16:9
-    int game_width{};
-    int game_height{};
+    int game_width;
+    int game_height;
     int half_gap_x{};
     int half_gap_y{};
     if (width > height) {
@@ -122,8 +122,6 @@ bool Graphics::closeWindow() {
 }
 
 void Graphics::drawEnvironment() {
-    // Dark blue background
-    glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
 void Graphics::drawTriangle(Position first, Position second, Position third) const {

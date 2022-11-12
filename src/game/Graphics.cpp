@@ -55,7 +55,7 @@ bool Graphics::initializeWindow() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Open a window and create its OpenGL context
-    window = glfwCreateWindow(1024, 768, "FutureShock", nullptr, nullptr);
+    window = glfwCreateWindow(1440, 810, "FutureShock", nullptr, nullptr);
     if (window == nullptr) {
         fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible."
                         " Try the 2.1 version of the tutorials.\n");
@@ -81,10 +81,25 @@ bool Graphics::initializeWindow() {
     return true;
 }
 
-void Graphics::framebuffer_size_callback(GLFWwindow *_window, int width, int height) {
-    // make sure the viewport matches the new window dimensions; note that width and
-    // height will be significantly larger than specified on retina displays.
-    glViewport(0, 0, width, height);
+void Graphics::framebuffer_size_callback(GLFWwindow *, int width, int height) {
+    // keep display dimension 16:9
+    int game_width{};
+    int game_height{};
+    int half_gap_x{};
+    int half_gap_y{};
+    if (width > height) {
+        // width larger
+        game_width = {static_cast<int>(static_cast<float>(height) * (16.0f / 9.0f))};
+        game_height = {height};
+        half_gap_x = {(width - game_width) / 2};
+    } else {
+        // height larger
+        game_width = {width};
+        game_height = {static_cast<int>(static_cast<float>(width) * (9.0f / 16.0f))};
+        half_gap_y = {(height - game_height) / 2};
+    }
+
+    glViewport(half_gap_x, half_gap_y, game_width, game_height);
 }
 
 void Graphics::initializeVertexBuffer() {

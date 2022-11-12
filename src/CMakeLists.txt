@@ -58,7 +58,7 @@ add_executable(
 	common/shader.hpp
 	game/GameLoop.cpp
 	game/GameLoop.hpp
-		game/Main.cpp game/Position2f.hpp game/Game.cpp game/Game.hpp)
+		game/Main.cpp game/structs/WindowPosition2f.hpp game/Game.cpp game/Game.hpp game/CoordinateSystem.cpp game/CoordinateSystem.hpp game/structs/GamePosition2f.hpp)
 
 target_link_libraries(FutureShock
 	${ALL_LIBS}

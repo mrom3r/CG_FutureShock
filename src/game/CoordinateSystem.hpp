@@ -1,0 +1,14 @@
+//
+// Created by Matze on 12.11.2022.
+//
+
+#ifndef FUTURESHOCK_COORDINATESYSTEM_HPP
+#define FUTURESHOCK_COORDINATESYSTEM_HPP
+
+
+class CoordinateSystem {
+
+};
+
+
+#endif //FUTURESHOCK_COORDINATESYSTEM_HPP

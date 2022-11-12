@@ -50,13 +50,15 @@ add_definitions(
 # User game
 add_executable(
 	FutureShock
-	game/Rederer.cpp
-	game/Rederer.hpp
+		game/Graphics.cpp
+		game/Graphics.hpp
 	game/shader/FragmentShader.fragmentshader
 	game/shader/VertexShader.vertexshader
 	common/shader.cpp
 	common/shader.hpp
-)
+	game/GameLoop.cpp
+	game/GameLoop.hpp
+		game/Main.cpp)
 
 target_link_libraries(FutureShock
 	${ALL_LIBS}

@@ -1,4 +1,4 @@
-#include "Rederer.hpp"
+#include "Graphics.hpp"
 
 // Include standard headers
 #include <cstdio>
@@ -16,14 +16,15 @@ using namespace glm;
 #include <common/shader.hpp>
 #include <iostream>
 
-int main() {
+Graphics::Graphics() {
     //Initialize window
     bool windowInitialized = initializeWindow();
-    if (!windowInitialized) return -1;
+    if (!windowInitialized) {
+        throw std::runtime_error("can't initialize Window");
+    }
 
     //Initialize vertex buffer
-    bool vertexBufferInitialized = initializeVertexBuffer();
-    if (!vertexBufferInitialized) return -1;
+    initializeVertexBuffer();
 
     // Create and compile our GLSL program from the shaders
     program_ID = LoadShaders(R"(..\src\game\shader\VertexShader.vertexshader)",
@@ -45,16 +46,16 @@ int main() {
         glfwPollEvents();
     } // Check if the ESC key was pressed or the window was closed
     while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
+}
 
+Graphics::~Graphics() {
     //Cleanup and close window
     cleanupVertexBuffer();
     glDeleteProgram(program_ID);
     closeWindow();
-
-    return 0;
 }
 
-bool initializeWindow() {
+bool Graphics::initializeWindow() {
     // Initialise GLFW
     if (!glfwInit()) {
         fprintf(stderr, "Failed to initialize GLFW\n");
@@ -94,7 +95,7 @@ bool initializeWindow() {
     return true;
 }
 
-bool initializeVertexBuffer() {
+void Graphics::initializeVertexBuffer() {
     glGenVertexArrays(1, &vertex_array_object);
     glGenBuffers(1, &vertex_buffer_object);
 
@@ -111,27 +112,23 @@ bool initializeVertexBuffer() {
             (void *) nullptr    // array buffer offset
     );
     glEnableVertexAttribArray(0);
-
-    return true;
 }
 
-bool cleanupVertexBuffer() {
+bool Graphics::cleanupVertexBuffer() {
     glDeleteBuffers(1, &vertex_buffer_object);
     glDeleteVertexArrays(1, &vertex_array_object);
     return true;
 }
 
-bool closeWindow() {
+bool Graphics::closeWindow() {
     glfwTerminate();
     return true;
 }
 
-void drawGame() {
+void Graphics::drawGame() {
     // Dark blue background
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
     // Draw the triangle
     glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
-
-
 }

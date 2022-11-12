@@ -1,0 +1,9 @@
+
+#ifndef FUTURESHOCK_GAMELOOP_HPP
+#define FUTURESHOCK_GAMELOOP_HPP
+
+class GameLoop {
+    GameLoop();
+};
+
+#endif //FUTURESHOCK_GAMELOOP_HPP

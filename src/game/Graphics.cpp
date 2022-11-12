@@ -23,8 +23,9 @@ Graphics::Graphics() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         drawEnvironment();
-        drawTriangle({-1.0, -1.0}, {0.0, 0.0}, {-1.0, 0.0});
-        drawTriangle({0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0});
+        //drawTriangle({-1.0, -1.0}, {0.0, 0.0}, {-1.0, 0.0});
+        //drawTriangle({0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0});
+        drawRectangle({-0.5, -0.5}, 1.0, 1.0);
 
         // Swap buffers
         glfwSwapBuffers(window);
@@ -140,11 +141,37 @@ void Graphics::drawTriangle(Position first, Position second, Position third) con
             0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
             3,                  // size
             GL_FLOAT,           // type
-            GL_FALSE,           // normalized?
+            GL_FALSE,           // normalized
             0,                  // stride
             (void *) nullptr    // array buffer offset
     );
 
-    // Draw the triangle
-    glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+    // Draw
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+}
+
+void Graphics::drawRectangle(Position position, float width, float height) const {
+    // Use shader
+    glUseProgram(program_ID);
+
+    GLfloat vertices[] {
+            0.0f, 0.0f, 0.0f,
+            0.0f, 0.5f, 0.0f,
+            0.5f, 0.5f, 0.0f,
+            0.5f, 0.0f, 0.0f
+    };
+
+    glEnableVertexAttribArray(0);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(
+            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+            4,                  // size
+            GL_FLOAT,           // type
+            GL_FALSE,           // normalized
+            0,                  // stride
+            (void *) nullptr    // array buffer offset
+    );
+
+    // Draw
+    glDrawArrays(GL_TRIANGLES, 0, 4);
 }

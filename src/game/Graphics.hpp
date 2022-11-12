@@ -50,6 +50,8 @@ class Graphics {
 
     void drawTriangle(Position first, Position second, Position third) const;
 
+    void drawRectangle(Position position, float width, float height) const;
+
 public:
     Graphics();
 

@@ -56,9 +56,7 @@ add_executable(
 	game/shader/VertexShader.vertexshader
 	game/Graphics.cpp
 	game/Graphics.hpp
-	game/GameLoop.cpp
-	game/GameLoop.hpp
-	game/Main.cpp
+		game/Main.cpp
 	game/structs/Position.hpp
 	game/Game.cpp
 	game/Game.hpp

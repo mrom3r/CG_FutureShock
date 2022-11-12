@@ -17,21 +17,7 @@ Graphics::Graphics() {
     program_ID = LoadShaders(R"(..\src\game\shader\VertexShader.vertexshader)",
                              R"(..\src\game\shader\FragmentShader.fragmentshader)");
 
-    //start animation loop until escape key is pressed
-    do {
-        // Clear the screen
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        drawEnvironment();
-        //drawTriangle({-1.0, -1.0}, {0.0, 0.0}, {-1.0, 0.0});
-        //drawTriangle({0.0, 0.0}, {1.0, 0.0}, {1.0, 1.0});
-        drawRectangle({-0.5, -0.5}, 1.0, 1.0);
-
-        // Swap buffers
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    } // Check if the ESC key was pressed or the window was closed
-    while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
+    window_pointer = std::make_shared<GLFWwindow *>(window);
 }
 
 Graphics::~Graphics() {
@@ -151,27 +137,11 @@ void Graphics::drawTriangle(Position first, Position second, Position third) con
 }
 
 void Graphics::drawRectangle(Position position, float width, float height) const {
-    // Use shader
-    glUseProgram(program_ID);
-
-    GLfloat vertices[] {
-            0.0f, 0.0f, 0.0f,
-            0.0f, 0.5f, 0.0f,
-            0.5f, 0.5f, 0.0f,
-            0.5f, 0.0f, 0.0f
-    };
-
-    glEnableVertexAttribArray(0);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(
-            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-            4,                  // size
-            GL_FLOAT,           // type
-            GL_FALSE,           // normalized
-            0,                  // stride
-            (void *) nullptr    // array buffer offset
-    );
-
-    // Draw
-    glDrawArrays(GL_TRIANGLES, 0, 4);
+    // TODO find better solution
+    Position first{position.x, position.y};
+    Position second{position.x + width, position.y};
+    Position third{position.x + width, position.y + height};
+    Position fourth{position.x, position.y + height};
+    drawTriangle(first, second, third);
+    drawTriangle(first, third, fourth);
 }

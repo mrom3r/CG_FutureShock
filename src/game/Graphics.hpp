@@ -20,8 +20,14 @@
 #include <common/shader.hpp>
 #include <iostream>
 #include "game/structs/Position.hpp"
+#include "Game.hpp"
+#include <memory>
 
-class Graphics {
+struct Graphics {
+
+    std::shared_ptr<GLFWwindow *> window_pointer{};
+
+    Game game{};
 
     GLuint vertex_buffer_size{};
 
@@ -44,7 +50,7 @@ class Graphics {
     bool cleanupVertexBuffer();
 
     // closes the OpenGL window and terminates GLFW
-    bool closeWindow();
+    static bool closeWindow();
 
     void drawEnvironment();
 
@@ -52,7 +58,6 @@ class Graphics {
 
     void drawRectangle(Position position, float width, float height) const;
 
-public:
     Graphics();
 
     ~Graphics();

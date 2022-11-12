@@ -64,6 +64,7 @@ bool Graphics::initializeWindow() {
         return false;
     }
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
     // Initialize GLEW
     glewExperimental = true; // Needed for core profile
@@ -78,6 +79,12 @@ bool Graphics::initializeWindow() {
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
     return true;
+}
+
+void Graphics::framebuffer_size_callback(GLFWwindow *_window, int width, int height) {
+    // make sure the viewport matches the new window dimensions; note that width and
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
 }
 
 void Graphics::initializeVertexBuffer() {

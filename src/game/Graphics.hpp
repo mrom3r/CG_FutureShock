@@ -27,13 +27,15 @@ class Graphics {
 
     GLuint vertex_buffer_object{};
     GLuint vertex_array_object{};
-    GLuint normal_buffer_object{};
 
     // program ID of the shaders, required for handling the shaders with OpenGL
     GLuint program_ID{};
 
     // initializes the window using GLFW and GLEW
     static bool initializeWindow();
+
+    // whenever the _window size changed (by OS or user resize) this callback function executes
+    static void framebuffer_size_callback(GLFWwindow *_window, int width, int height);
 
     // initializes the vertex buffer array and binds it OpenGL
     void initializeVertexBuffer();

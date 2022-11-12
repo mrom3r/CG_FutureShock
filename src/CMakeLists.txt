@@ -1,9 +1,7 @@
-# CMake entry point
 cmake_minimum_required (VERSION 3.0)
-project (OpenGL-Template)
+project (FutureShock)
 
 find_package(OpenGL REQUIRED)
-
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
     message( FATAL_ERROR "Please select another Build Directory ! (and give it a clever name, like bin_Visual2012_64bits/)" )
@@ -14,8 +12,6 @@ endif()
 if( CMAKE_BINARY_DIR MATCHES " " )
 	message( "Your Build Directory contains spaces. If you experience problems when compiling, this can be the cause." )
 endif()
-
-
 
 # Compile external dependencies 
 add_subdirectory (external)
@@ -29,8 +25,6 @@ include(MSVCMultipleProcessCompile) # /MP
 if(INCLUDE_DISTRIB)
 	add_subdirectory(distrib)
 endif(INCLUDE_DISTRIB)
-
-
 
 include_directories(
 	external/glfw-3.1.2/include/GLFW/
@@ -54,20 +48,23 @@ add_definitions(
 )
 
 # User game
-add_executable(game
-	game/gameLoop.cpp
-	game/gameLoop.hpp
+add_executable(
+	FutureShock
+	game/Rederer.cpp
+	game/Rederer.hpp
 	game/shader/FragmentShader.fragmentshader
 	game/shader/VertexShader.vertexshader
 	common/shader.cpp
 	common/shader.hpp
 )
-target_link_libraries(game
+
+target_link_libraries(FutureShock
 	${ALL_LIBS}
 )
+
 # Xcode and Visual working directories
-set_target_properties(game PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/game/")
-create_target_launcher(game WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/game/")
+set_target_properties(FutureShock PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/game/")
+create_target_launcher(FutureShock WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/game/")
 
 SOURCE_GROUP(common REGULAR_EXPRESSION ".*/common/.*" )
 SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
@@ -75,10 +72,9 @@ SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shader$" )
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 add_custom_command(
-   TARGET game POST_BUILD
-   COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/game${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/game/"
-   )
-
+   TARGET FutureShock POST_BUILD
+   COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_CFG_INTDIR}/FutureShock${CMAKE_EXECUTABLE_SUFFIX}" "${CMAKE_CURRENT_SOURCE_DIR}/game/"
+)
 
 elseif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 

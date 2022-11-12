@@ -1,4 +1,4 @@
-#include "gameLoop.hpp"
+#include "Rederer.hpp"
 
 // Include standard headers
 #include <cstdio>
@@ -132,4 +132,6 @@ void drawGame() {
 
     // Draw the triangle
     glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+
+
 }

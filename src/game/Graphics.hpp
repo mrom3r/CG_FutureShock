@@ -24,8 +24,10 @@
 class Graphics {
 
     GLuint vertex_buffer_size{};
+
     GLuint vertex_buffer_object{};
     GLuint vertex_array_object{};
+    GLuint normal_buffer_object{};
 
     // program ID of the shaders, required for handling the shaders with OpenGL
     GLuint program_ID{};

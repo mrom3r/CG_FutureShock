@@ -20,7 +20,7 @@ Graphics::Graphics() {
     //start animation loop until escape key is pressed
     do {
         // Clear the screen
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         drawEnvironment();
         drawTriangle({-1.0, -1.0}, {0.0, 0.0}, {-1.0, 0.0});
@@ -108,13 +108,14 @@ void Graphics::drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) con
     // Use shader
     glUseProgram(program_ID);
 
-    GLfloat vertex_buffer_data[] {
+    GLfloat vertices[] {
         first.x, first.y, 0.0f,
         second.x, second.y, 0.0f,
         third.x, third.y, 0.0f
     };
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertex_buffer_data), vertex_buffer_data, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(
             0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
             3,                  // size
@@ -123,7 +124,6 @@ void Graphics::drawTriangle(Vertex2f first, Vertex2f second, Vertex2f third) con
             0,                  // stride
             (void *) nullptr    // array buffer offset
     );
-    glEnableVertexAttribArray(0);
 
     // Draw the triangle
     glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle

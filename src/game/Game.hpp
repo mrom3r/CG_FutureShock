@@ -6,6 +6,8 @@
 
 class Game {
 
+    Position player_position{};
+
 public:
 
     Game();

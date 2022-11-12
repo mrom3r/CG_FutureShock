@@ -1,20 +1,6 @@
 #include "Graphics.hpp"
 
-// Include standard headers
-#include <cstdio>
-
-// Include GLFW
-#include <glfw3.h>
-
 GLFWwindow *window;
-
-// Include GLM
-#include <glm/glm.hpp>
-
-using namespace glm;
-
-#include <common/shader.hpp>
-#include <iostream>
 
 Graphics::Graphics() {
     //Initialize window
@@ -39,7 +25,7 @@ Graphics::Graphics() {
         glUseProgram(program_ID);
         glBindVertexArray(vertex_array_object);
 
-        drawGame();
+        drawTest();
 
         // Swap buffers
         glfwSwapBuffers(window);
@@ -125,7 +111,7 @@ bool Graphics::closeWindow() {
     return true;
 }
 
-void Graphics::drawGame() {
+void Graphics::drawTest() {
     // Dark blue background
     glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 

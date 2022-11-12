@@ -8,12 +8,23 @@
 #include <glm/detail/type_mat2x2.hpp>
 #include <vector>
 
+// Include GLFW
+#include <glfw3.h>
+
+// Include GLM
+#include <glm/glm.hpp>
+
+// Include standard headers
+#include <cstdio>
+#include <common/shader.hpp>
+#include <iostream>
+
 class Graphics {
 
-    GLfloat vertex_buffer_data[9] {
+    GLfloat vertex_buffer_data[9]{
             -1.0f, -1.0f, 0.0f,
             1.0f, -1.0f, 0.0f,
-            0.0f,  1.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
     };
 
     GLuint vertex_buffer_size{};
@@ -23,10 +34,10 @@ class Graphics {
     // program ID of the shaders, required for handling the shaders with OpenGL
     GLuint program_ID{};
 
-    void drawGame();
+    static void drawTest();
 
     // initializes the window using GLFW and GLEW
-    bool initializeWindow();
+    static bool initializeWindow();
 
     // initializes the vertex buffer array and binds it OpenGL
     void initializeVertexBuffer();
@@ -35,10 +46,11 @@ class Graphics {
     bool cleanupVertexBuffer();
 
     // closes the OpenGL window and terminates GLFW
-    bool closeWindow();
+    static bool closeWindow();
 
 public:
     Graphics();
+
     ~Graphics();
 };
 

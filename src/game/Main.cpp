@@ -20,15 +20,16 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         auto start_time = std::chrono::steady_clock::now();
-        auto elapsedTime{start_time - end_time};
+        auto elapsed_time{start_time - end_time};
 
         // don't run faster than frame_millis per frame
-        if (elapsedTime < frame_millis) {
-            std::this_thread::sleep_for(frame_millis - elapsedTime);
+        if (elapsed_time < frame_millis) {
+            std::this_thread::sleep_for(frame_millis - elapsed_time);
         }
 
         end_time = start_time;
 
+        game.update_game(elapsed_time);
         game.draw_game();
 
         // Swap buffers

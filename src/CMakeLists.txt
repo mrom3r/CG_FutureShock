@@ -54,12 +54,15 @@ add_executable(
 	common/shader.hpp
 	game/shader/FragmentShader.fragmentshader
 	game/shader/VertexShader.vertexshader
+	game/structs/Position.hpp
+	game/structs/Shape.hpp
 	game/Graphics.cpp
 	game/Graphics.hpp
-		game/Main.cpp
-	game/structs/Position.hpp
+	game/Main.cpp
 	game/Game.cpp
 	game/Game.hpp
+	game/GameObject.cpp
+	game/GameObject.hpp
 )
 
 target_link_libraries(FutureShock

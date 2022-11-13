@@ -1,4 +1,7 @@
 
+#include <chrono>
+#include <thread>
+
 #include "Graphics.hpp"
 #include "Game.hpp"
 
@@ -8,15 +11,24 @@ int main() {
 
     GLFWwindow *local_window{*graphics.window_pointer};
 
+    static const std::chrono::milliseconds frame_millis{10};
+    auto end_time = std::chrono::steady_clock::now();
+
     //start animation loop until escape key is pressed
     do {
         // Clear the screen
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        //graphics.drawRectangle({0.0, 0.0}, 1.0, 1.0);
-        //static float test = -5;
-        //graphics.drawTriangle({-0.8, -0.8}, {0.0, -0.8}, {0.0, 0.0}, test, {-0.4, -0.4});
-        //test += 0.1;
+        auto start_time = std::chrono::steady_clock::now();
+        auto elapsedTime{start_time - end_time};
+
+        // don't run faster than frame_millis per frame
+        if (elapsedTime < frame_millis) {
+            std::this_thread::sleep_for(frame_millis - elapsedTime);
+        }
+
+        end_time = start_time;
+
         game.draw_game();
 
         // Swap buffers

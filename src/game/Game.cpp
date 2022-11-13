@@ -15,9 +15,9 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 
     // player
     GameObject player{rectangle_positions({}, 0.1, 0.05)};
-    player.translation.x = 0.0005f;
-    player.translation.y = 0.0005f;
-    player.rotation = 15;
+    player.translation.x = -0.6f;
+    player.translation.y = -0.45f;
+    player.rotation = 13;
     game_objects.push_back(player);
 }
 

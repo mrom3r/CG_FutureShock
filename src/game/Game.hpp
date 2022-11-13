@@ -21,6 +21,8 @@ public:
 
     void draw_game();
 
+    static std::vector<Position> rectangle_positions(Position position, float width, float height);
+
 };
 
 #endif //FUTURESHOCK_GAME_HPP

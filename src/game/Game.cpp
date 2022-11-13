@@ -14,17 +14,22 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     );
 
     // player
-    GameObject player{{{-0.1, -0.1}, {0.1, -0.1}, {0.1, 0.1}, {-0.1, 0.1}}};
-    static float test = 0;
-    player.translation.x = test * 0.0005f;
-    player.translation.y = test * 0.0005f;
-    player.rotation = test * 0.8f;
+    GameObject player{rectangle_positions({}, 0.1, 0.05)};
+    player.translation.x = 0.0005f;
+    player.translation.y = 0.0005f;
+    player.rotation = 15;
     game_objects.push_back(player);
-    test += 1;
 }
 
 void Game::draw_game() {
     for (const GameObject &game_object: game_objects) {
         graphics->drawGameObject(game_object);
     }
+}
+
+std::vector<Position> Game::rectangle_positions(Position position, float width, float height) {
+    return {{position.x, position.y},
+            {position.x + width, position.y},
+            {position.x + width, position.y + height},
+            {position.x, position.y + height}};
 }

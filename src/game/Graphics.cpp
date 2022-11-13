@@ -178,7 +178,7 @@ void Graphics::drawRectangle(Position position, float width, float height) const
     drawTriangle(first, third, fourth, 0, Position());
 }
 
-void Graphics::drawGameObject(const GameObject& game_object) const {
+void Graphics::drawGameObject(const GameObject &game_object) const {
     // Use shader
     glUseProgram(program_ID);
 
@@ -199,15 +199,12 @@ void Graphics::drawGameObject(const GameObject& game_object) const {
 
     std::vector<GLfloat> vertices{};
 
-    for (glm::vec2 vector : rotated_points) {
+    for (glm::vec2 vector: rotated_points) {
         vertices.emplace_back(vector.x);
         vertices.emplace_back(vector.y);
-        //vertices.emplace_back(0.0);
     }
 
     glEnableVertexAttribArray(0);
-
-    GLint size{static_cast<GLint>(vertices.size())};
 
     glBufferData(GL_ARRAY_BUFFER, sizeof(std::vector<GLfloat>) + (sizeof(GLfloat) * vertices.size()), vertices.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(
@@ -220,7 +217,7 @@ void Graphics::drawGameObject(const GameObject& game_object) const {
     );
 
     // Draw
-    glDrawArrays(GL_LINE_LOOP, 0, 4);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, static_cast<GLint>(rotated_points.size()));
 
     glDisableVertexAttribArray(0);
 }

@@ -14,10 +14,7 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     );
 
     // player
-    GameObject player{rectangle_positions({}, 0.1, 0.05)};
-    player.translation.x = -0.6f;
-    player.translation.y = -0.45f;
-    player.rotation = 13;
+    GameObject player{rectangle_positions({}, 0.1, 0.05), {-0.6f, -0.45}, 10};
     game_objects.push_back(player);
 }
 
@@ -28,8 +25,8 @@ void Game::draw_game() {
 }
 
 std::vector<Position> Game::rectangle_positions(Position position, float width, float height) {
-    return {{position.x, position.y},
-            {position.x + width, position.y},
-            {position.x + width, position.y + height},
-            {position.x, position.y + height}};
+    return {{position.x / -2, position.y / -2},
+            {position.x / 2 + width, position.y / 2},
+            {position.x / 2 + width, position.y / -2 + height},
+            {position.x / -2, position.y / 2 + height}};
 }

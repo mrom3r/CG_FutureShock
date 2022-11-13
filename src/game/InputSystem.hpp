@@ -1,0 +1,11 @@
+
+#ifndef FUTURESHOCK_INPUTSYSTEM_HPP
+#define FUTURESHOCK_INPUTSYSTEM_HPP
+
+
+class InputSystem {
+
+};
+
+
+#endif //FUTURESHOCK_INPUTSYSTEM_HPP

@@ -11,6 +11,8 @@ int main() {
 
     GLFWwindow *local_window{*graphics.window_pointer};
 
+    glClearColor(0.0, 0.0, 0.4, 1.0);
+
     static const std::chrono::milliseconds frame_millis{10};
     auto end_time = std::chrono::steady_clock::now();
 

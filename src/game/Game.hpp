@@ -11,8 +11,6 @@ class Game {
 
     std::shared_ptr<Graphics> graphics{};
 
-    GameObject player{};
-
     std::vector<GameObject> game_objects{};
 
 public:

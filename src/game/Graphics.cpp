@@ -186,20 +186,22 @@ void Graphics::drawGameObject(const GameObject &game_object) const {
     glm::mat2 rotation_matrix{std::cos(rotation_rad), -std::sin(rotation_rad),
                               std::sin(rotation_rad), std::cos(rotation_rad)};
 
-    glm::vec2 rotation_point_tmp{game_object.rotation_point.x, game_object.rotation_point.y};
+    glm::vec2 rotation{game_object.rotation_point.x, game_object.rotation_point.y};
+    glm::vec2 translation{game_object.translation.x, game_object.translation.y};
 
-    std::vector<glm::vec2> rotated_points{};
+    std::vector<glm::vec2> tmp_points{};
 
     for (Position position: game_object.positions) {
-        glm::vec2 tmp_point{glm::vec2{position.x, position.y} - rotation_point_tmp};
-        tmp_point = rotation_matrix * tmp_point;
-        tmp_point += rotation_point_tmp;
-        rotated_points.emplace_back(tmp_point);
+        glm::vec2 tmp_point{glm::vec2{position.x, position.y}};
+        tmp_point -= rotation;
+        tmp_point = rotation_matrix * tmp_point + translation;
+        tmp_point += rotation;
+        tmp_points.emplace_back(tmp_point);
     }
 
     std::vector<GLfloat> vertices{};
 
-    for (glm::vec2 vector: rotated_points) {
+    for (glm::vec2 vector: tmp_points) {
         vertices.emplace_back(vector.x);
         vertices.emplace_back(vector.y);
     }
@@ -218,7 +220,7 @@ void Graphics::drawGameObject(const GameObject &game_object) const {
     );
 
     // Draw
-    glDrawArrays(GL_TRIANGLE_FAN, 0, static_cast<GLint>(rotated_points.size()));
+    glDrawArrays(GL_TRIANGLE_FAN, 0, static_cast<GLint>(tmp_points.size()));
 
     glDisableVertexAttribArray(0);
 }

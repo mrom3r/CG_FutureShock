@@ -1,6 +1,4 @@
 
 #include "GameObject.hpp"
 
-GameObject::GameObject(std::vector<Position> shape, float rotation, const Position &rotationPoint) : positions(
-        std::move(
-                shape)), rotation(rotation), rotation_point(rotationPoint) {}
+GameObject::GameObject(std::vector<Position> positions) : positions(std::move(positions)) {}

@@ -8,12 +8,15 @@
 struct GameObject {
 
     std::vector<Position> positions{};
+
+    Position translation{};
+
     float rotation{};
     Position rotation_point{};
 
     GameObject() = default;
 
-    explicit GameObject(std::vector<Position> shape, float rotation = 0, const Position &rotationPoint = {0.0, 0.0});
+    explicit GameObject(std::vector<Position> positions);
 
 };
 

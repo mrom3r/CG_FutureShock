@@ -115,7 +115,8 @@ bool Graphics::closeWindow() {
 void Graphics::drawEnvironment() {
 }
 
-void Graphics::drawTriangle(Position first, Position second, Position third, float rotation) const {
+void
+Graphics::drawTriangle(Position first, Position second, Position third, float rotation, Position rotation_point) const {
     // Use shader
     glUseProgram(program_ID);
 
@@ -125,27 +126,35 @@ void Graphics::drawTriangle(Position first, Position second, Position third, flo
             third.x, third.y, 0.0f
     };
 
-    float rot_rad = rotation / 180.0f * 3.14159265358979323846f;
-    glm::mat2 myR = glm::mat2(std::cos(rot_rad), -std::sin(rot_rad),
-                              std::sin(rot_rad), std::cos(rot_rad));
+    if (rotation != 0) {
+        float rotation_rad = rotation / 180.0f * 3.14159265358979323846f;
+        glm::mat2 myR = glm::mat2(std::cos(rotation_rad), -std::sin(rotation_rad),
+                                  std::sin(rotation_rad), std::cos(rotation_rad));
 
-    glm::vec2 rotated_first = glm::vec2(first.x, first.y);
-    glm::vec2 rotated_second = glm::vec2(second.x, second.y);
-    glm::vec2 rotated_third = glm::vec2(third.x, third.y);
+        glm::vec2 rotation_point_tmp = glm::vec2(rotation_point.x, rotation_point.y);
 
-    rotated_first = myR * rotated_first;
-    rotated_second = myR * rotated_second;
-    rotated_third = myR * rotated_third;
+        glm::vec2 rotated_first = glm::vec2(first.x, first.y) - rotation_point_tmp;
+        glm::vec2 rotated_second = glm::vec2(second.x, second.y) - rotation_point_tmp;
+        glm::vec2 rotated_third = glm::vec2(third.x, third.y) - rotation_point_tmp;
 
-    vertices[0] = rotated_first[0];
-    vertices[1] = rotated_first[1];
-    vertices[2] = 0.0f;
-    vertices[3] = rotated_second[0];
-    vertices[4] = rotated_second[1];
-    vertices[5] = 0.0f;
-    vertices[6] = rotated_third[0];
-    vertices[7] = rotated_third[1];
-    vertices[8] = 0.0f;
+        rotated_first = myR * rotated_first;
+        rotated_second = myR * rotated_second;
+        rotated_third = myR * rotated_third;
+
+        rotated_first += rotation_point_tmp;
+        rotated_second += rotation_point_tmp;
+        rotated_third += rotation_point_tmp;
+
+        vertices[0] = rotated_first[0];
+        vertices[1] = rotated_first[1];
+        vertices[2] = 0.0f;
+        vertices[3] = rotated_second[0];
+        vertices[4] = rotated_second[1];
+        vertices[5] = 0.0f;
+        vertices[6] = rotated_third[0];
+        vertices[7] = rotated_third[1];
+        vertices[8] = 0.0f;
+    }
 
     glEnableVertexAttribArray(0);
 
@@ -171,6 +180,6 @@ void Graphics::drawRectangle(Position position, float width, float height) const
     Position second{position.x + width, position.y};
     Position third{position.x + width, position.y + height};
     Position fourth{position.x, position.y + height};
-    drawTriangle(first, second, third, 0);
-    drawTriangle(first, third, fourth, 0);
+    drawTriangle(first, second, third, 0, Position());
+    drawTriangle(first, third, fourth, 0, Position());
 }

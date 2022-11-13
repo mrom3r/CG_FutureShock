@@ -48,8 +48,7 @@ add_definitions(
 )
 
 # User game
-add_executable(
-	FutureShock
+add_executable(FutureShock
 	common/shader.cpp
 	common/shader.hpp
 	game/shader/FragmentShader.fragmentshader

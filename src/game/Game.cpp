@@ -9,9 +9,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     game_objects.clear();
 
     //background
-    game_objects.emplace_back(GameObject{
-            {{0.0, -0.6}, {-1.0, -0.4}, {-1.0, -1.0}, {1.0, -1.0}, {1.0, -0.3}}}
-    );
+    GameObject background{{{0.0, -0.6}, {-1.0, -0.4}, {-1.0, -1.0}, {1.0, -1.0}, {1.0, -0.3}}};
+    game_objects.emplace_back(background);
 
     // player
     GameObject player{rectangle_positions({}, 0.1, 0.05), {-0.6f, -0.46}, 10};

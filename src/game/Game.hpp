@@ -6,8 +6,11 @@
 #include "Position.hpp"
 #include "GameObject.hpp"
 #include "Graphics.hpp"
+#include "CollisionDetection.hpp"
 
 class Game {
+
+    CollisionDetection collision_detection{};
 
     std::shared_ptr<Graphics> graphics{};
 

@@ -14,9 +14,10 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         //graphics.drawRectangle({0.0, 0.0}, 1.0, 1.0);
-        static float test = -5;
-        graphics.drawTriangle({-0.8, -0.8}, {0.0, -0.8}, {0.0, 0.0}, test, {-0.4, -0.4});
-        test += 0.1;
+        //static float test = -5;
+        //graphics.drawTriangle({-0.8, -0.8}, {0.0, -0.8}, {0.0, 0.0}, test, {-0.4, -0.4});
+        //test += 0.1;
+        game.draw_game();
 
         // Swap buffers
         glfwSwapBuffers(local_window);

@@ -190,7 +190,7 @@ void Graphics::drawGameObject(const GameObject &game_object) const {
 
     std::vector<glm::vec2> rotated_points{};
 
-    for (Position position: game_object.shape.positions) {
+    for (Position position: game_object.positions) {
         glm::vec2 tmp_point{glm::vec2{position.x, position.y} - rotation_point_tmp};
         tmp_point = rotation_matrix * tmp_point;
         tmp_point += rotation_point_tmp;
@@ -206,7 +206,8 @@ void Graphics::drawGameObject(const GameObject &game_object) const {
 
     glEnableVertexAttribArray(0);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(std::vector<GLfloat>) + (sizeof(GLfloat) * vertices.size()), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(std::vector<GLfloat>) + (sizeof(GLfloat) * vertices.size()), vertices.data(),
+                 GL_STATIC_DRAW);
     glVertexAttribPointer(
             0,          // attribute 0. No particular reason for 0, but must match the layout in the shader.
             2,          // number of components per generic vertex attribute. Must be 1, 2, 3, 4.

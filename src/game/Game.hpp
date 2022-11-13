@@ -3,7 +3,7 @@
 #define FUTURESHOCK_GAME_HPP
 
 #include <chrono>
-#include "game/structs/Position.hpp"
+#include "Position.hpp"
 #include "GameObject.hpp"
 #include "Graphics.hpp"
 
@@ -17,7 +17,7 @@ class Game {
 
 public:
 
-    explicit Game(const Graphics& _graphics);
+    explicit Game(const Graphics &_graphics);
 
     void update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration);
 

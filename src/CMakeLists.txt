@@ -54,8 +54,7 @@ add_executable(
 	common/shader.hpp
 	game/shader/FragmentShader.fragmentshader
 	game/shader/VertexShader.vertexshader
-	game/structs/Position.hpp
-	game/structs/Shape.hpp
+	game/Position.hpp
 	game/Graphics.cpp
 	game/Graphics.hpp
 	game/Main.cpp

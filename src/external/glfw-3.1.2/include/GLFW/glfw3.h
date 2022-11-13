@@ -654,34 +654,34 @@ extern "C" {
  *  @ingroup input
  *  @{ */
 
-/*! @brief The regular arrow cursor shape.
+/*! @brief The regular arrow cursor positions.
  *
  *  The regular arrow cursor.
  */
 #define GLFW_ARROW_CURSOR           0x00036001
-/*! @brief The text input I-beam cursor shape.
+/*! @brief The text input I-beam cursor positions.
  *
- *  The text input I-beam cursor shape.
+ *  The text input I-beam cursor positions.
  */
 #define GLFW_IBEAM_CURSOR           0x00036002
-/*! @brief The crosshair shape.
+/*! @brief The crosshair positions.
  *
- *  The crosshair shape.
+ *  The crosshair positions.
  */
 #define GLFW_CROSSHAIR_CURSOR       0x00036003
-/*! @brief The hand shape.
+/*! @brief The hand positions.
  *
- *  The hand shape.
+ *  The hand positions.
  */
 #define GLFW_HAND_CURSOR            0x00036004
-/*! @brief The horizontal resize arrow shape.
+/*! @brief The horizontal resize arrow positions.
  *
- *  The horizontal resize arrow shape.
+ *  The horizontal resize arrow positions.
  */
 #define GLFW_HRESIZE_CURSOR         0x00036005
-/*! @brief The vertical resize arrow shape.
+/*! @brief The vertical resize arrow positions.
  *
- *  The vertical resize arrow shape.
+ *  The vertical resize arrow positions.
  */
 #define GLFW_VRESIZE_CURSOR         0x00036006
 /*! @} */
@@ -2633,9 +2633,9 @@ GLFWAPI void glfwSetCursorPos(GLFWwindow* window, double xpos, double ypos);
  */
 GLFWAPI GLFWcursor* glfwCreateCursor(const GLFWimage* image, int xhot, int yhot);
 
-/*! @brief Creates a cursor with a standard shape.
+/*! @brief Creates a cursor with a standard positions.
  *
- *  Returns a cursor with a [standard shape](@ref shapes), that can be set for
+ *  Returns a cursor with a [standard positions](@ref shapes), that can be set for
  *  a window with @ref glfwSetCursor.
  *
  *  @param[in] shape One of the [standard shapes](@ref shapes).

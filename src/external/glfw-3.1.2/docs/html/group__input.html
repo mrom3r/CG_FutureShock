@@ -147,8 +147,8 @@ Functions</h2></td></tr>
 <tr class="memitem:gafca356935e10135016aa49ffa464c355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="glfw3_8h.html#a89261ae18c75e863aaf2656ecdd238f4">GLFWcursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gafca356935e10135016aa49ffa464c355">glfwCreateCursor</a> (const <a class="el" href="structGLFWimage.html">GLFWimage</a> *image, int xhot, int yhot)</td></tr>
 <tr class="memdesc:gafca356935e10135016aa49ffa464c355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a custom cursor.  <a href="#gafca356935e10135016aa49ffa464c355">More...</a><br /></td></tr>
 <tr class="separator:gafca356935e10135016aa49ffa464c355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa65f416d03ebbbb5b8db71a489fcb894"><td class="memItemLeft" align="right" valign="top"><a class="el" href="glfw3_8h.html#a89261ae18c75e863aaf2656ecdd238f4">GLFWcursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894">glfwCreateStandardCursor</a> (int shape)</td></tr>
-<tr class="memdesc:gaa65f416d03ebbbb5b8db71a489fcb894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a cursor with a standard shape.  <a href="#gaa65f416d03ebbbb5b8db71a489fcb894">More...</a><br /></td></tr>
+<tr class="memitem:gaa65f416d03ebbbb5b8db71a489fcb894"><td class="memItemLeft" align="right" valign="top"><a class="el" href="glfw3_8h.html#a89261ae18c75e863aaf2656ecdd238f4">GLFWcursor</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894">glfwCreateStandardCursor</a> (int positions)</td></tr>
+<tr class="memdesc:gaa65f416d03ebbbb5b8db71a489fcb894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a cursor with a standard positions.  <a href="#gaa65f416d03ebbbb5b8db71a489fcb894">More...</a><br /></td></tr>
 <tr class="separator:gaa65f416d03ebbbb5b8db71a489fcb894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga81b952cd1764274d0db7fb3c5a79ba6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a> (<a class="el" href="glfw3_8h.html#a89261ae18c75e863aaf2656ecdd238f4">GLFWcursor</a> *cursor)</td></tr>
 <tr class="memdesc:ga81b952cd1764274d0db7fb3c5a79ba6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a cursor.  <a href="#ga81b952cd1764274d0db7fb3c5a79ba6a">More...</a><br /></td></tr>
@@ -486,7 +486,7 @@ Key and button actions</h2></td></tr>
 <dd>
 <a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a" title="Destroys a cursor. ">glfwDestroyCursor</a> </dd>
 <dd>
-<a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894" title="Creates a cursor with a standard shape. ">glfwCreateStandardCursor</a></dd></dl>
+<a class="el" href="group__input.html#gaa65f416d03ebbbb5b8db71a489fcb894" title="Creates a cursor with a standard positions. ">glfwCreateStandardCursor</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>Added in GLFW 3.1. </dd></dl>
 
 </div>
@@ -499,15 +499,15 @@ Key and button actions</h2></td></tr>
           <td class="memname"><a class="el" href="glfw3_8h.html#a89261ae18c75e863aaf2656ecdd238f4">GLFWcursor</a>* glfwCreateStandardCursor </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>shape</em></td><td>)</td>
+          <td class="paramname"><em>positions</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a cursor with a <a class="el" href="group__shapes.html">standard shape</a>, that can be set for a window with <a class="el" href="group__input.html#gad3b4f38c8d5dae036bc8fa959e18343e">glfwSetCursor</a>.</p>
+<p>Returns a cursor with a <a class="el" href="group__shapes.html">standard positions</a>, that can be set for a window with <a class="el" href="group__input.html#gad3b4f38c8d5dae036bc8fa959e18343e">glfwSetCursor</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">shape</td><td>One of the <a class="el" href="group__shapes.html">standard shapes</a>.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">positions</td><td>One of the <a class="el" href="group__shapes.html">standard shapes</a>.</td></tr>
   </table>
   </dd>
 </dl>

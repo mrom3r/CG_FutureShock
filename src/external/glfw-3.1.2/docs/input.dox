@@ -196,7 +196,7 @@ void charmods_callback(GLFWwindow* window, unsigned int codepoint, int mods)
 
 Mouse input comes in many forms, including cursor motion, button presses and
 scrolling offsets.  The cursor appearance can also be changed, either to
-a custom image or a standard cursor shape from the system theme.
+a custom image or a standard cursor positions from the system theme.
 
 
 @subsection cursor_pos Cursor position
@@ -303,7 +303,7 @@ from the top-left corner.
 
 @subsubsection cursor_standard Standard cursor creation
 
-A cursor with a [standard shape](@ref shapes) from the current system cursor
+A cursor with a [standard positions](@ref shapes) from the current system cursor
 theme can be can be created with @ref glfwCreateStandardCursor.
 
 @code

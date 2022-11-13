@@ -21,8 +21,12 @@ public:
 
     void draw_game();
 
-    static std::vector<Position> rectangle_positions(Position position, float width, float height);
-
+    std::vector<Position> rectangle_positions(Position position, float width, float height) {
+        return {{position.x / -2.0f,        position.y / -2.0f},
+                {position.x / 2.0f + width, position.y / 2.0f},
+                {position.x / 2.0f + width, position.y / -2.0f + height},
+                {position.x / -2.0f,        position.y / 2.0f + height}};
+    }
 };
 
 #endif //FUTURESHOCK_GAME_HPP

@@ -62,6 +62,8 @@ add_executable(
 	game/Game.hpp
 	game/GameObject.cpp
 	game/GameObject.hpp
+	game/Tank.cpp
+	game/Tank.hpp
 )
 
 target_link_libraries(FutureShock

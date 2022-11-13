@@ -14,19 +14,16 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     );
 
     // player
-    GameObject player{rectangle_positions({}, 0.1, 0.05), {-0.6f, -0.45}, 10};
+    GameObject player{rectangle_positions({}, 0.1, 0.05), {-0.6f, -0.46}, 10};
     game_objects.push_back(player);
+
+    // enemy
+    GameObject enemy{rectangle_positions({}, 0.1, 0.05), {0.6f, -0.4}, -16};
+    game_objects.push_back(enemy);
 }
 
 void Game::draw_game() {
     for (const GameObject &game_object: game_objects) {
         graphics->drawGameObject(game_object);
     }
-}
-
-std::vector<Position> Game::rectangle_positions(Position position, float width, float height) {
-    return {{position.x / -2, position.y / -2},
-            {position.x / 2 + width, position.y / 2},
-            {position.x / 2 + width, position.y / -2 + height},
-            {position.x / -2, position.y / 2 + height}};
 }

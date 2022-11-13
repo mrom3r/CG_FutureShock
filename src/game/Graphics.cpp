@@ -183,16 +183,16 @@ void Graphics::drawGameObject(const GameObject& game_object) const {
     glUseProgram(program_ID);
 
     float rotation_rad = game_object.rotation / 180.0f * 3.14159265358979323846f;
-    glm::mat2 myR = glm::mat2(std::cos(rotation_rad), -std::sin(rotation_rad),
-                              std::sin(rotation_rad), std::cos(rotation_rad));
+    glm::mat2 rotation_matrix{std::cos(rotation_rad), -std::sin(rotation_rad),
+                              std::sin(rotation_rad), std::cos(rotation_rad)};
 
-    glm::vec2 rotation_point_tmp = glm::vec2(game_object.rotation_point.x, game_object.rotation_point.y);
+    glm::vec2 rotation_point_tmp{game_object.rotation_point.x, game_object.rotation_point.y};
 
     std::vector<glm::vec2> rotated_points{};
 
     for (Position position: game_object.shape.positions) {
         glm::vec2 tmp_point{glm::vec2{position.x, position.y} - rotation_point_tmp};
-        tmp_point *= tmp_point;
+        tmp_point = rotation_matrix * tmp_point;
         tmp_point += rotation_point_tmp;
         rotated_points.emplace_back(tmp_point);
     }

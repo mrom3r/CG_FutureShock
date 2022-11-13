@@ -202,23 +202,25 @@ void Graphics::drawGameObject(const GameObject& game_object) const {
     for (glm::vec2 vector : rotated_points) {
         vertices.emplace_back(vector.x);
         vertices.emplace_back(vector.y);
-        vertices.emplace_back(0.0);
+        //vertices.emplace_back(0.0);
     }
 
     glEnableVertexAttribArray(0);
 
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+    GLint size{static_cast<GLint>(vertices.size())};
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(std::vector<GLfloat>) + (sizeof(GLfloat) * vertices.size()), vertices.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(
-            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-            3,    // size
-            GL_FLOAT,           // type
-            GL_FALSE,           // normalized
-            0,                  // stride
-            (void *) nullptr    // array buffer offset
+            0,          // attribute 0. No particular reason for 0, but must match the layout in the shader.
+            2,          // number of components per generic vertex attribute. Must be 1, 2, 3, 4.
+            GL_FLOAT,   // type
+            GL_FALSE,   // normalized
+            0,          // stride
+            nullptr     // array buffer offset
     );
 
     // Draw
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_LINE_LOOP, 0, 4);
 
     glDisableVertexAttribArray(0);
 }

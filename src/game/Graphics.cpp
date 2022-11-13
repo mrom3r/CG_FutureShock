@@ -1,10 +1,6 @@
 
 #include "Graphics.hpp"
 
-#include <cmath>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-
 GLFWwindow *window;
 
 Graphics::Graphics() {
@@ -110,9 +106,6 @@ bool Graphics::cleanupVertexBuffer() {
 bool Graphics::closeWindow() {
     glfwTerminate();
     return true;
-}
-
-void Graphics::drawEnvironment() {
 }
 
 void

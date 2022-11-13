@@ -3,15 +3,18 @@
 #define FUTURESHOCK_GAME_HPP
 
 #include "game/structs/Position.hpp"
+#include "Graphics.hpp"
 
 class Game {
 
     Position player_position{};
     float player_direction{};
 
+    std::shared_ptr<Graphics> graphics{};
+
 public:
 
-    Game();
+    Game(const Graphics& _graphics);
 
     void update_positions();
 

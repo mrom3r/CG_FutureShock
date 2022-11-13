@@ -1,8 +1,10 @@
 
 #include "Graphics.hpp"
+#include "Game.hpp"
 
 int main() {
     Graphics graphics{};
+    Game game{graphics};
 
     GLFWwindow *local_window{*graphics.window_pointer};
 

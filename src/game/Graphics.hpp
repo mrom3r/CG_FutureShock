@@ -23,13 +23,8 @@
 #include <cmath>
 
 #include "game/structs/Position.hpp"
-#include "Game.hpp"
 
-struct Graphics {
-
-    std::shared_ptr<GLFWwindow *> window_pointer{};
-
-    Game game{};
+class Graphics {
 
     GLuint vertex_buffer_size{};
 
@@ -54,7 +49,9 @@ struct Graphics {
     // closes the OpenGL window and terminates GLFW
     static bool closeWindow();
 
-    void drawEnvironment();
+public:
+
+    std::shared_ptr<GLFWwindow *> window_pointer{};
 
     void drawTriangle(Position first, Position second, Position third, float rotation, Position rotation_point) const;
 

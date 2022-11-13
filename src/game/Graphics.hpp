@@ -19,9 +19,11 @@
 #include <cstdio>
 #include <common/shader.hpp>
 #include <iostream>
+#include <memory>
+#include <cmath>
+
 #include "game/structs/Position.hpp"
 #include "Game.hpp"
-#include <memory>
 
 struct Graphics {
 
@@ -54,7 +56,7 @@ struct Graphics {
 
     void drawEnvironment();
 
-    void drawTriangle(Position first, Position second, Position third) const;
+    void drawTriangle(Position first, Position second, Position third, float rotation) const;
 
     void drawRectangle(Position position, float width, float height) const;
 

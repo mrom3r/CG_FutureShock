@@ -1,6 +1,10 @@
 
 #include "Graphics.hpp"
 
+#include <cmath>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+
 GLFWwindow *window;
 
 Graphics::Graphics() {
@@ -111,7 +115,7 @@ bool Graphics::closeWindow() {
 void Graphics::drawEnvironment() {
 }
 
-void Graphics::drawTriangle(Position first, Position second, Position third) const {
+void Graphics::drawTriangle(Position first, Position second, Position third, float rotation) const {
     // Use shader
     glUseProgram(program_ID);
 
@@ -121,7 +125,30 @@ void Graphics::drawTriangle(Position first, Position second, Position third) con
             third.x, third.y, 0.0f
     };
 
+    float rot_rad = rotation / 180.0f * 3.14159265358979323846f;
+    glm::mat2 myR = glm::mat2(std::cos(rot_rad), -std::sin(rot_rad),
+                              std::sin(rot_rad), std::cos(rot_rad));
+
+    glm::vec2 rotated_first = glm::vec2(first.x, first.y);
+    glm::vec2 rotated_second = glm::vec2(second.x, second.y);
+    glm::vec2 rotated_third = glm::vec2(third.x, third.y);
+
+    rotated_first = myR * rotated_first;
+    rotated_second = myR * rotated_second;
+    rotated_third = myR * rotated_third;
+
+    vertices[0] = rotated_first[0];
+    vertices[1] = rotated_first[1];
+    vertices[2] = 0.0f;
+    vertices[3] = rotated_second[0];
+    vertices[4] = rotated_second[1];
+    vertices[5] = 0.0f;
+    vertices[6] = rotated_third[0];
+    vertices[7] = rotated_third[1];
+    vertices[8] = 0.0f;
+
     glEnableVertexAttribArray(0);
+
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     glVertexAttribPointer(
             0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
@@ -134,6 +161,8 @@ void Graphics::drawTriangle(Position first, Position second, Position third) con
 
     // Draw
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    glDisableVertexAttribArray(0);
 }
 
 void Graphics::drawRectangle(Position position, float width, float height) const {
@@ -142,6 +171,6 @@ void Graphics::drawRectangle(Position position, float width, float height) const
     Position second{position.x + width, position.y};
     Position third{position.x + width, position.y + height};
     Position fourth{position.x, position.y + height};
-    drawTriangle(first, second, third);
-    drawTriangle(first, third, fourth);
+    drawTriangle(first, second, third, 0);
+    drawTriangle(first, third, fourth, 0);
 }

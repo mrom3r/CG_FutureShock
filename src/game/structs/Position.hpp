@@ -2,8 +2,6 @@
 #ifndef FUTURESHOCK_POSITION_HPP
 #define FUTURESHOCK_POSITION_HPP
 
-#include <stdexcept>
-
 struct Position {
 
     float x{};

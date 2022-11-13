@@ -21,8 +21,10 @@
 #include <iostream>
 #include <memory>
 #include <cmath>
+#include <game/structs/Shape.hpp>
 
 #include "game/structs/Position.hpp"
+#include "GameObject.hpp"
 
 class Graphics {
 
@@ -56,6 +58,8 @@ public:
     void drawTriangle(Position first, Position second, Position third, float rotation, Position rotation_point) const;
 
     void drawRectangle(Position position, float width, float height) const;
+
+    void drawGameObject(const GameObject& game_object) const;
 
     Graphics();
 

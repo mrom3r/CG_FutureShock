@@ -3,6 +3,9 @@
 
 Game::Game(const Graphics& _graphics) {
     graphics = {std::make_shared<Graphics>(_graphics)};
+
+    // initialize game
+    game_objects.emplace_back(Shape{{{-1.0, 0.0}, {-1.0, -1.0}, {0.0, 0.0}}});
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
@@ -10,21 +13,7 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 }
 
 void Game::draw_game() {
-    draw_background();
-    draw_bullets();
-    draw_player();
-}
-
-void Game::draw_background() {
-    static float test = -5;
-    graphics->drawTriangle({-0.8, -0.8}, {0.0, -0.8}, {0.0, 0.0}, test, {-0.4, -0.4});
-    test += 0.1;
-}
-
-void Game::draw_bullets() {
-
-}
-
-void Game::draw_player() {
-
+    for (const GameObject& game_object : game_objects) {
+       graphics->drawGameObject(game_object);
+    }
 }

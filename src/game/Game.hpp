@@ -11,8 +11,7 @@ class Game {
 
     std::shared_ptr<Graphics> graphics{};
 
-    Position player_position{};
-    float player_direction{};
+    GameObject player{};
 
     std::vector<GameObject> game_objects{};
 
@@ -24,11 +23,6 @@ public:
 
     void draw_game();
 
-    void draw_background();
-
-    void draw_bullets();
-
-    void draw_player();
 };
 
 #endif //FUTURESHOCK_GAME_HPP

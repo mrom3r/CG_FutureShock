@@ -1,5 +1,6 @@
 
 #include "Graphics.hpp"
+#include "GameObject.hpp"
 
 GLFWwindow *window;
 
@@ -175,4 +176,49 @@ void Graphics::drawRectangle(Position position, float width, float height) const
     Position fourth{position.x, position.y + height};
     drawTriangle(first, second, third, 0, Position());
     drawTriangle(first, third, fourth, 0, Position());
+}
+
+void Graphics::drawGameObject(const GameObject& game_object) const {
+    // Use shader
+    glUseProgram(program_ID);
+
+    float rotation_rad = game_object.rotation / 180.0f * 3.14159265358979323846f;
+    glm::mat2 myR = glm::mat2(std::cos(rotation_rad), -std::sin(rotation_rad),
+                              std::sin(rotation_rad), std::cos(rotation_rad));
+
+    glm::vec2 rotation_point_tmp = glm::vec2(game_object.rotation_point.x, game_object.rotation_point.y);
+
+    std::vector<glm::vec2> rotated_points{};
+
+    for (Position position: game_object.shape.positions) {
+        glm::vec2 tmp_point{glm::vec2{position.x, position.y} - rotation_point_tmp};
+        tmp_point *= tmp_point;
+        tmp_point += rotation_point_tmp;
+        rotated_points.emplace_back(tmp_point);
+    }
+
+    std::vector<GLfloat> vertices{};
+
+    for (glm::vec2 vector : rotated_points) {
+        vertices.emplace_back(vector.x);
+        vertices.emplace_back(vector.y);
+        vertices.emplace_back(0.0);
+    }
+
+    glEnableVertexAttribArray(0);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(
+            0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+            3,    // size
+            GL_FLOAT,           // type
+            GL_FALSE,           // normalized
+            0,                  // stride
+            (void *) nullptr    // array buffer offset
+    );
+
+    // Draw
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    glDisableVertexAttribArray(0);
 }

@@ -1,7 +1,7 @@
 
 #include "Tank.hpp"
 
-Tank::Tank() {
+Tank::Tank(Position _translation) : translation(_translation) {
     GameObject player{Game::rectangle_positions({}, 0.1, 0.05)};
     game_objects.push_back(player);
 

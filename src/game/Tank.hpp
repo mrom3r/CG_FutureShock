@@ -18,7 +18,7 @@ public:
 
     std::vector<GameObject> get_game_objects();
 
-    Tank();
+    Tank(Position _translation = {0.0, 0.0});
 };
 
 

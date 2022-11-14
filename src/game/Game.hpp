@@ -15,7 +15,12 @@ class Game {
 
     std::shared_ptr<Graphics> graphics{};
 
+    GameObject background{};
+    std::vector<GameObject> permanent_game_objects{};
+
     std::vector<GameObject> game_objects{};
+
+    const float gravity{-0.001};
 
 public:
 

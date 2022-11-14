@@ -9,6 +9,8 @@ struct GameObject {
 
     unsigned long long id;
 
+    bool collision = false;
+
     std::vector<Position> positions{};
 
     Position translation{};

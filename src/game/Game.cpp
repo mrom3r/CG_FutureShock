@@ -6,6 +6,7 @@ Game::Game(const Graphics &_graphics) {
 
     //background
     background = {{{0.0, -0.6}, {-1.0, -0.4}, {-1.0, -1.0}, {1.0, -1.0}, {1.0, -0.3}}};
+    background.collision = true;
 
     // player
     Tank player{{-0.5, 0.0}};
@@ -21,30 +22,22 @@ Game::Game(const Graphics &_graphics) {
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
+    // update game objects
+    for (GameObject &game_object: permanent_game_objects) {
+            Position old_translation{game_object.translation};
+            // update gravity
+            game_object.translation += {0.0, gravity};
+            // check collisions
+            for (GameObject &other_game_object: permanent_game_objects) {
+                if (game_object.id == other_game_object.id || !game_object.collision) continue;
+                if (collision_detection.check_collision(game_object, other_game_object)) {
+                    game_object.translation = old_translation;
+                };
+            }
+    }
+
     // insert all permanent game objects
     game_objects.insert(game_objects.end(), permanent_game_objects.begin(), permanent_game_objects.end());
-
-    // update game objects
-    for (GameObject &game_object: game_objects) {
-        Position old_translation{game_object.translation};
-        // update gravity
-        game_object.translation += {0.0, gravity};
-        // check collisions
-        for (GameObject &other_game_object: game_objects) {
-            if (game_object.id == other_game_object.id) continue;
-            if (collision_detection.check_collision(game_object, other_game_object)) {
-                game_object.translation = old_translation;
-            };
-        }
-    }
-
-    // check collision with background
-    for (GameObject &game_object: game_objects) {
-        Position old_translation{game_object.translation};
-        if (collision_detection.check_collision(background, game_object)) {
-            game_object.translation = old_translation;
-        };
-    }
 
     // insert background
     game_objects.emplace_back(background);

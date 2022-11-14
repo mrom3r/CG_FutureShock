@@ -4,12 +4,11 @@
 
 #include <vector>
 #include "GameObject.hpp"
+#include "Game.hpp"
 
-class Tank {
+struct Tank {
 
     std::vector<GameObject> game_objects{};
-
-public:
 
     Tank();
 };

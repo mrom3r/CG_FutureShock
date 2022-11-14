@@ -13,16 +13,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     game_objects.emplace_back(background);
 
     // player
-    GameObject player{rectangle_positions({}, 0.1, 0.05), {-0.6f, -0.46}, 10};
-    game_objects.push_back(player);
-    GameObject player_canon{rectangle_positions({}, 0.05, 0.008), {-0.52f, -0.4}, -35};
-    game_objects.push_back(player_canon);
-
-    // enemy
-    GameObject enemy{rectangle_positions({}, 0.1, 0.05), {0.6f, -0.4}, -16};
-    game_objects.push_back(enemy);
-    GameObject enemy_canon{rectangle_positions({}, 0.05, 0.008), {0.59f, -0.29}, 55};
-    game_objects.push_back(enemy_canon);
+    Tank player{};
+    game_objects.insert(game_objects.end(), player.game_objects.begin(),  player.game_objects.end());
 }
 
 void Game::draw_game() {

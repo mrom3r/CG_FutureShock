@@ -7,6 +7,7 @@
 #include "GameObject.hpp"
 #include "Graphics.hpp"
 #include "CollisionDetection.hpp"
+#include "Tank.hpp"
 
 class Game {
 
@@ -24,11 +25,16 @@ public:
 
     void draw_game();
 
-    std::vector<Position> rectangle_positions(Position position, float width, float height) {
-        return {{position.x / -2.0f,        position.y / -2.0f},
-                {position.x / 2.0f + width, position.y / 2.0f},
-                {position.x / 2.0f + width, position.y / -2.0f + height},
-                {position.x / -2.0f,        position.y / 2.0f + height}};
+    static std::vector<Position> rectangle_positions(Position position, float width, float height) {
+        float left{width / -2.0f + position.x};
+        float right{width / 2.0f + position.x};
+        float up{height / 2.0f + position.y};
+        float down{height / -2.0f + position.y};
+
+        return {{left, down},
+                {left + width, down},
+                {left + width, down + height},
+                {left, down + height}};
     }
 };
 

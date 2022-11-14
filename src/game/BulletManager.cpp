@@ -16,7 +16,7 @@ void BulletManager::create_bullet(Position start, Position direction) {
 std::vector<GameObject> BulletManager::get_active_bullets_game_objects() {
     std::vector<GameObject> bullet_game_objects{};
 
-    for (Bullet bullet : bullets) {
+    for (Bullet &bullet: bullets) {
         bullet_game_objects.emplace_back(bullet.get_new_bullet());
     }
 

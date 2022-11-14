@@ -16,7 +16,7 @@ class Game {
 
     std::shared_ptr<Graphics> graphics{};
 
-    GameObject background{};
+    GameObject map;
 
     std::vector<GameObject> game_objects{};
 

@@ -4,20 +4,24 @@
 Game::Game(const Graphics &_graphics) {
     graphics = {std::make_shared<Graphics>(_graphics)};
 
-    //background
-    background = GameObject{std::vector<Position>{{0.0, -0.6}, {-1.0, -0.4}, {-1.0, -1.0}, {1.0, -1.0}, {1.0, -0.3}}};
-    background.collision = true;
+    // map
+    map = GameObject{std::vector<Position>{{0.0,  -0.6},
+                                           {-1.0, -0.4},
+                                           {-1.0, -1.0},
+                                           {1.0,  -1.0},
+                                           {1.0,  -0.3}}};
+    map.collision = true;
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
-    // insert background
-    game_objects.emplace_back(background);
+    // insert map
+    game_objects.emplace_back(map);
 
     // bullets
     std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
-    game_objects.insert(game_objects.end(), active_bullets.begin(),  active_bullets.end());
+    game_objects.insert(game_objects.end(), active_bullets.begin(), active_bullets.end());
 
     // player
     std::vector<GameObject> player_game_objects{player.get_game_objects()};

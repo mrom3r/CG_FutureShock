@@ -21,7 +21,7 @@ struct GameObject {
     GameObject() = default;
 
     explicit GameObject(std::vector<Position> positions, const Position &translation = {}, float rotation = 0,
-               const Position &rotationPoint = {});
+                        const Position &rotationPoint = {});
 
 };
 

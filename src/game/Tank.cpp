@@ -2,14 +2,15 @@
 #include "Tank.hpp"
 
 Tank::Tank(Position _translation) : translation(_translation) {
-    body = GameObject{rectangle_positions({}, 0.1, 0.05)};
+    std::vector<Position> body_positions{{-0.05, -0.025}, {-0.04, -0.04}, {0.04, -0.04}, {0.05, -0.025}, {0.05, 0.025}, {-0.05, 0.025}};
+    body = GameObject{body_positions};
     body.collision = true;
     game_objects.push_back(body);
 
     GameObject tower{rectangle_positions({}, 0.05, 0.03), {0.0f, 0.04}};
     game_objects.push_back(tower);
 
-    canon = GameObject{rectangle_positions({}, 0.1, 0.008), {0.0f, 0.05}, 270, {}};
+    canon = GameObject{rectangle_positions({}, 0.1, 0.01), {0.0f, 0.05}, 270, {}};
 }
 
 std::vector<GameObject> Tank::get_game_objects() {

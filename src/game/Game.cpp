@@ -9,24 +9,32 @@ Game::Game(const Graphics &_graphics) {
     background.collision = true;
 
     // player
-    Tank player{{-0.5, 0.0}};
-    std::vector<GameObject> player_game_objects{player.get_game_objects()};
-    permanent_game_objects.insert(permanent_game_objects.end(), player_game_objects.begin(), player_game_objects.end());
+    player = Tank{{-0.5, 0.0}};
 
     // enemy
-    Tank enemy{{0.5, 0.0}};
-    std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
-    permanent_game_objects.insert(permanent_game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
+    enemy = Tank{{0.5, 0.0}};
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
+    // player
+    std::vector<GameObject> player_game_objects{player.get_game_objects()};
+    game_objects.insert(game_objects.end(), player_game_objects.begin(), player_game_objects.end());
+
+    // enemy
+    std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
+    game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
+
+    // insert background
+    game_objects.emplace_back(background);
+
     // update game objects
-    for (GameObject &game_object: permanent_game_objects) {
+    for (GameObject &game_object: game_objects) {
         Position old_translation{game_object.translation};
         // update gravity
-        game_object.translation += {0.0, gravity};
+        //player.translation += {0.0, gravity};
+        //enemy.translation += {0.0, gravity};
         // check collisions
         /*
         for (GameObject &other_game_object: permanent_game_objects) {
@@ -37,12 +45,6 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
         }
          */
     }
-
-    // insert all permanent game objects
-    game_objects.insert(game_objects.end(), permanent_game_objects.begin(), permanent_game_objects.end());
-
-    // insert background
-    game_objects.emplace_back(background);
 }
 
 void Game::draw_game() {

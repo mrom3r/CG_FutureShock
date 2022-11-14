@@ -4,21 +4,28 @@
 
 #include <vector>
 #include "GameObject.hpp"
-#include "Game.hpp"
+#include "Tools.hpp"
 
 class Tank {
 
     std::vector<GameObject> game_objects{};
     GameObject canon{};
 
+    float canon_speed{1.0f};
+
 public:
 
     Position translation{};
     float rotation{};
 
+    explicit Tank(Position _translation = {0.0, 0.0});
+
     std::vector<GameObject> get_game_objects();
 
-    Tank(Position _translation = {0.0, 0.0});
+    void lift_canon();
+
+    void lower_canon();
+
 };
 
 

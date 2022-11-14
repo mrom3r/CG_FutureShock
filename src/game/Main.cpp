@@ -31,6 +31,20 @@ int main() {
 
         end_time = start_time;
 
+        // handle player input
+        if (glfwGetKey(local_window, GLFW_KEY_W) == GLFW_PRESS) {
+            game.player.lift_canon();
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_A) == GLFW_PRESS) {
+            game.player.translation += Position{-0.001, 0.0};
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_S) == GLFW_PRESS) {
+            game.player.lower_canon();
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_D) == GLFW_PRESS) {
+            game.player.translation += Position{0.001, 0.0};
+        }
+
         game.update_game(elapsed_time);
         game.draw_game();
 

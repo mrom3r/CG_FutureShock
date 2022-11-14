@@ -184,11 +184,6 @@ vec2 Jostle(vec2 a) {
     return b;
 }
 
-CollisionDetection CollisionDetection::get_instance() {
-    static CollisionDetection collision_detection{};
-    return collision_detection;
-}
-
 bool CollisionDetection::check_collision(const GameObject &first, const GameObject &second) {
     float first_rotation_rad = first.rotation / 180.0f * 3.14159265358979323846f;
     glm::mat2 rotation_matrix_first{std::cos(first_rotation_rad), -std::sin(first_rotation_rad),

@@ -12,8 +12,6 @@
 
 class Game {
 
-    CollisionDetection collision_detection{};
-
     std::shared_ptr<Graphics> graphics{};
 
     GameObject map;

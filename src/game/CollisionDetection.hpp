@@ -18,8 +18,6 @@ class CollisionDetection {
 
 public:
 
-    static CollisionDetection get_instance();
-
     static bool check_collision(const GameObject &first, const GameObject &second);
 
 };

@@ -9,14 +9,21 @@ Game::Game(const Graphics &_graphics) {
     background.collision = true;
 
     // player
-    player = Tank{{-0.5, 0.0}};
+    player = Tank{std::make_shared<BulletManager>(bullet_manager), {-0.5, 0.0}};
 
     // enemy
-    enemy = Tank{{0.5, 0.0}};
+    enemy = Tank{std::make_shared<BulletManager>(bullet_manager), {0.5, 0.0}};
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
+
+    // insert background
+    game_objects.emplace_back(background);
+
+    // bullets
+    std::vector<GameObject> active_bullets{bullet_manager.get_active_bullets_game_objects()};
+    game_objects.insert(game_objects.end(), active_bullets.begin(),  active_bullets.end());
 
     // player
     std::vector<GameObject> player_game_objects{player.get_game_objects()};
@@ -26,8 +33,6 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
     game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
 
-    // insert background
-    game_objects.emplace_back(background);
 
     // update game objects
     for (GameObject &game_object: game_objects) {

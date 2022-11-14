@@ -8,10 +8,13 @@
 #include "Graphics.hpp"
 #include "CollisionDetection.hpp"
 #include "Tank.hpp"
+#include "BulletManager.hpp"
 
 class Game {
 
     CollisionDetection collision_detection{};
+
+    BulletManager bullet_manager{};
 
     std::shared_ptr<Graphics> graphics{};
 

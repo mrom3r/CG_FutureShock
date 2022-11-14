@@ -5,22 +5,22 @@ Game::Game(const Graphics &_graphics) {
     graphics = {std::make_shared<Graphics>(_graphics)};
 
     // map
-    map = GameObject{std::vector<Position>{{0.0,  0.2},
-                                           {-1.0, -0.4},
+    map = GameObject{std::vector<Position>{{0.0,  -0.1},
+                                           {-1.0, -1.0},
                                            {-1.0, -1.0},
                                            {1.0,  -1.0},
-                                           {1.0,  -0.3}}};
+                                           {1.0,  -1.0}}};
     map.collision = true;
 
     // left border
     left_border = GameObject{std::vector<Position>{{-0.3, -1.0},
-                                                   {-1.0, 0.3},
+                                                   {-1.0, -0.3},
                                                    {-1.0, -1.0}}};
     left_border.collision = true;
 
     // right border
     right_border = GameObject{std::vector<Position>{{0.3, -1.0},
-                                                    {1.0, 0.3},
+                                                    {1.0, -0.3},
                                                     {1.0, -1.0}}};
     right_border.collision = true;
 }

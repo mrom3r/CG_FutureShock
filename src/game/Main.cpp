@@ -48,6 +48,22 @@ int main() {
             game.player.shoot_canon();
         }
 
+        if (glfwGetKey(local_window, GLFW_KEY_UP) == GLFW_PRESS) {
+            game.enemy.lift_canon();
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+            game.enemy.translation += Position{-0.001, 0.0};
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+            game.enemy.lower_canon();
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+            game.enemy.translation += Position{0.001, 0.0};
+        }
+        if (glfwGetKey(local_window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+            game.enemy.shoot_canon();
+        }
+
         game.update_game(elapsed_time);
         game.draw_game();
 

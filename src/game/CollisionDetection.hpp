@@ -3,13 +3,17 @@
 #define FUTURESHOCK_COLLISIONDETECTION_HPP
 
 #include "GameObject.hpp"
-#include <stdio.h>
-#include <stdlib.h>
-#include <float.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cfloat>
 
 class CollisionDetection {
 
+    CollisionDetection() = default;
+
 public:
+
+    static CollisionDetection get_instance();
 
     bool check_collision(GameObject first, GameObject second);
 

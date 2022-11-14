@@ -221,3 +221,8 @@ bool CollisionDetection::check_collision(GameObject first, GameObject second) {
 
     return gjk(a, count1, b, count2);
 }
+
+CollisionDetection CollisionDetection::get_instance() {
+    static CollisionDetection collision_detection{};
+    return collision_detection;
+}

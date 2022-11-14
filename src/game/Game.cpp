@@ -22,8 +22,16 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     game_objects.clear();
 
     // update gravity
-    for (GameObject &gameObject: permanent_game_objects) {
-        gameObject.translation += {0.0, gravity};
+    for (GameObject &game_object: permanent_game_objects) {
+        Position old_translation{game_object.translation};
+        game_object.translation += {0.0, gravity};
+        // check collisions
+        for (GameObject &other_game_object: permanent_game_objects) {
+            if (game_object.id == other_game_object.id) continue;
+            if (collision_detection.check_collision(game_object, other_game_object)) {
+                game_object.translation = old_translation;
+            };
+        }
     }
 
     // insert all permanent game objects

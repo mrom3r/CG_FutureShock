@@ -17,6 +17,12 @@ struct Position {
         return *this;
     }
 
+    Position operator-=(Position position) {
+        this->x -= position.x;
+        this->y -= position.y;
+        return *this;
+    }
+
 };
 
 #endif //FUTURESHOCK_POSITION_HPP

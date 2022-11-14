@@ -198,8 +198,6 @@ vec2 Jostle(vec2 a) {
 }
 
 bool CollisionDetection::check_collision(GameObject first, GameObject second) {
-
-
     std::vector<vec2> vertices1{};
     std::vector<vec2> vertices2{};
 
@@ -218,8 +216,8 @@ bool CollisionDetection::check_collision(GameObject first, GameObject second) {
     vec2 a[(sizeof(std::vector<vec2>) + (sizeof(vec2) * vertices1.size())) / sizeof(vec2)];
     vec2 b[(sizeof(std::vector<vec2>) + (sizeof(vec2) * vertices2.size())) / sizeof(vec2)];
 
-    for (size_t i = 0; i < count1; ++i) a[i] = Jostle(vertices1[i]);
-    for (size_t i = 0; i < count2; ++i) b[i] = Jostle(vertices2[i]);
+    //for (size_t i = 0; i < count1; ++i) a[i] = Jostle(vertices1[i]);
+    //for (size_t i = 0; i < count2; ++i) b[i] = Jostle(vertices2[i]);
 
     return gjk(a, count1, b, count2);
 }

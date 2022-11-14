@@ -7,6 +7,8 @@
 
 struct GameObject {
 
+    unsigned long long id;
+
     std::vector<Position> positions{};
 
     Position translation{};

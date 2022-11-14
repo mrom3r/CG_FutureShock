@@ -2,7 +2,7 @@
 #include "Tank.hpp"
 
 Tank::Tank(Position _translation) : translation(_translation) {
-    GameObject body{rectangle_positions({}, 0.1, 0.05)};
+    body = GameObject{rectangle_positions({}, 0.1, 0.05)};
     body.collision = true;
     game_objects.push_back(body);
 
@@ -49,4 +49,13 @@ void Tank::shoot_canon() {
         BulletManager::get_instance().create_bullet(translation, {0.01, 0.01});
         last_shot = std::chrono::steady_clock::now();
     }
+}
+
+GameObject Tank::get_body() {
+    GameObject tmp_game_object{body};
+
+    tmp_game_object.translation += translation;
+    tmp_game_object.rotation += rotation;
+
+    return tmp_game_object;
 }

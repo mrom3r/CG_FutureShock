@@ -13,6 +13,8 @@
 class Tank {
 
     std::vector<GameObject> game_objects{};
+
+    GameObject body{};
     GameObject canon{};
 
     float canon_speed{1.0f};
@@ -35,6 +37,8 @@ public:
     void lower_canon();
 
     void shoot_canon();
+
+    GameObject get_body();
 
 };
 

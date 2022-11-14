@@ -1,7 +1,7 @@
 
 #include "Tank.hpp"
 
-Tank::Tank(Position _translation) : translation(_translation) {
+Tank::Tank(Position _translation, Color _color) : translation(_translation), color(_color) {
     std::vector<Position> body_positions{{-0.05, -0.025},
                                          {-0.04, -0.04},
                                          {0.04,  -0.04},
@@ -32,6 +32,10 @@ std::vector<GameObject> Tank::get_game_objects() {
     tmp_canon.rotation += rotation;
 
     tmp_game_objects.emplace_back(tmp_canon);
+
+    for (GameObject& gameObject : tmp_game_objects) {
+        gameObject.color = color;
+    }
 
     return tmp_game_objects;
 }

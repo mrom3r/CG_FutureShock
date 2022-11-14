@@ -24,8 +24,8 @@ class Game {
 
 public:
 
-    Tank player{Position{-0.5, 0.0}};
-    Tank enemy{Position{0.6, 0.0}};
+    Tank player{Position{-0.5, 0.0}, Color{0.0f, 1.0f, 0.0f}};
+    Tank enemy{Position{0.6, 0.0}, Color{1.0f, 0.0f, 0.0f}};
 
     explicit Game(const Graphics &_graphics);
 

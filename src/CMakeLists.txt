@@ -65,7 +65,7 @@ add_executable(FutureShock
 	game/Tank.hpp
 	game/CollisionDetection.cpp
 	game/CollisionDetection.hpp
-		game/Tools.hpp game/BulletManager.cpp game/BulletManager.hpp game/Bullet.cpp game/Bullet.hpp)
+		game/Tools.hpp game/BulletManager.cpp game/BulletManager.hpp game/Bullet.cpp game/Bullet.hpp game/Color.hpp)
 
 target_link_libraries(FutureShock
 	${ALL_LIBS}

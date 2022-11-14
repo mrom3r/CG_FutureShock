@@ -179,6 +179,10 @@ void Graphics::drawRectangle(Position position, float width, float height) const
 }
 
 void Graphics::drawGameObject(const GameObject &game_object) const {
+    // define color
+    int vertexColorLocation = glGetUniformLocation(program_ID, "myColor");
+    glUniform4f(vertexColorLocation, game_object.color.red, game_object.color.green, game_object.color.blue, game_object.color.alpha);
+
     // Use shader
     glUseProgram(program_ID);
 

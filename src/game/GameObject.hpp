@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "Position.hpp"
+#include "Color.hpp"
 
 struct GameObject {
 
@@ -17,6 +18,8 @@ struct GameObject {
 
     float rotation{};
     Position rotation_point{};
+
+    Color color{0.0, 0.5, 1.0};
 
     GameObject() = default;
 

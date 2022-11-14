@@ -36,3 +36,11 @@ void Tank::lower_canon() {
     // TODO limit
     canon.rotation -= canon_speed;
 }
+
+void Tank::shoot_canon() {
+    auto time_difference = std::chrono::steady_clock::now() - last_shot;
+    if (time_difference > reloading_time) {
+        std::cout << "shot" << std::endl;
+        last_shot = std::chrono::steady_clock::now();
+    }
+}

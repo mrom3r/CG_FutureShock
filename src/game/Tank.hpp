@@ -3,6 +3,8 @@
 #define FUTURESHOCK_TANK_HPP
 
 #include <vector>
+#include <iostream>
+#include <chrono>
 #include "GameObject.hpp"
 #include "Tools.hpp"
 
@@ -12,6 +14,8 @@ class Tank {
     GameObject canon{};
 
     float canon_speed{1.0f};
+    std::chrono::milliseconds reloading_time{1000};
+    std::chrono::time_point<std::chrono::steady_clock> last_shot{};
 
 public:
 
@@ -25,6 +29,8 @@ public:
     void lift_canon();
 
     void lower_canon();
+
+    void shoot_canon();
 
 };
 

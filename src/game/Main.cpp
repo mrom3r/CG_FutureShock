@@ -44,6 +44,9 @@ int main() {
         if (glfwGetKey(local_window, GLFW_KEY_D) == GLFW_PRESS) {
             game.player.translation += Position{0.001, 0.0};
         }
+        if (glfwGetKey(local_window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            game.player.shoot_canon();
+        }
 
         game.update_game(elapsed_time);
         game.draw_game();

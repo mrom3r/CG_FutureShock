@@ -11,6 +11,12 @@ struct Position {
 
     Position(float x, float y) : x(x), y(y) {}
 
+    Position operator+=(Position position) {
+        this->x += position.x;
+        this->y += position.y;
+        return *this;
+    }
+
 };
 
 #endif //FUTURESHOCK_POSITION_HPP

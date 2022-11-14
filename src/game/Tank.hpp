@@ -6,9 +6,17 @@
 #include "GameObject.hpp"
 #include "Game.hpp"
 
-struct Tank {
+class Tank {
 
     std::vector<GameObject> game_objects{};
+    GameObject canon{};
+
+public:
+
+    Position translation{};
+    float rotation{};
+
+    std::vector<GameObject> get_game_objects();
 
     Tank();
 };

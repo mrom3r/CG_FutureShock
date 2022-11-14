@@ -14,7 +14,15 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 
     // player
     Tank player{};
-    game_objects.insert(game_objects.end(), player.game_objects.begin(),  player.game_objects.end());
+    player.translation = {-0.5, 0.0};
+    std::vector<GameObject> player_game_objects{player.get_game_objects()};
+    game_objects.insert(game_objects.end(), player_game_objects.begin(),  player_game_objects.end());
+
+    // enemy
+    Tank enemy{};
+    enemy.translation = {0.5, 0.0};
+    std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
+    game_objects.insert(game_objects.end(), enemy_game_objects.begin(),  enemy_game_objects.end());
 }
 
 void Game::draw_game() {

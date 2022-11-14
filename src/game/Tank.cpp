@@ -19,10 +19,12 @@ std::vector<GameObject> Tank::get_game_objects() {
         gameObject.rotation += rotation;
     }
 
-    canon.translation += translation;
-    canon.rotation += rotation;
+    GameObject tmp_canon{canon};
 
-    tmp_game_objects.emplace_back(canon);
+    tmp_canon.translation += translation;
+    tmp_canon.rotation += rotation;
+
+    tmp_game_objects.emplace_back(tmp_canon);
 
     return tmp_game_objects;
 }

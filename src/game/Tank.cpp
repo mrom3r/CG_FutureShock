@@ -9,7 +9,7 @@ Tank::Tank(Position _translation) : translation(_translation) {
     GameObject tower{rectangle_positions({}, 0.05, 0.03), {0.0f, 0.04}};
     game_objects.push_back(tower);
 
-    canon = GameObject{rectangle_positions({}, 0.12, 0.008), {0.0f, 0.06}, -90};
+    canon = GameObject{rectangle_positions({}, 0.1, 0.008), {0.0f, 0.05}, 270, {}};
 }
 
 std::vector<GameObject> Tank::get_game_objects() {
@@ -30,13 +30,15 @@ std::vector<GameObject> Tank::get_game_objects() {
 }
 
 void Tank::lift_canon() {
-    // TODO limit
-    canon.rotation += canon_speed;
+    if (canon.rotation < 310) {
+        canon.rotation += canon_speed;
+    }
 }
 
 void Tank::lower_canon() {
-    // TODO limit
-    canon.rotation -= canon_speed;
+    if (canon.rotation > 230) {
+        canon.rotation -= canon_speed;
+    }
 }
 
 void Tank::shoot_canon() {

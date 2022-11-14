@@ -13,11 +13,15 @@ Game::Game(const Graphics &_graphics) {
     map.collision = true;
 
     // left border
-    left_border = GameObject{std::vector<Position>{{-0.3,  -1.0}, {-1.0, 0.3}, {-1.0, -1.0}}};
+    left_border = GameObject{std::vector<Position>{{-0.3, -1.0},
+                                                   {-1.0, 0.3},
+                                                   {-1.0, -1.0}}};
     left_border.collision = true;
 
     // right border
-    right_border = GameObject{std::vector<Position>{{0.3,  -1.0}, {1.0, 0.3}, {1.0, -1.0}}};
+    right_border = GameObject{std::vector<Position>{{0.3, -1.0},
+                                                    {1.0, 0.3},
+                                                    {1.0, -1.0}}};
     right_border.collision = true;
 }
 
@@ -43,8 +47,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 
     // update player
     if (CollisionDetection::check_collision(player.get_body(), map)
-    || CollisionDetection::check_collision(player.get_body(), left_border)
-    || CollisionDetection::check_collision(player.get_body(), right_border)
+        || CollisionDetection::check_collision(player.get_body(), left_border)
+        || CollisionDetection::check_collision(player.get_body(), right_border)
             ) {
         player.translation -= Position{0.0, gravity};
     } else {

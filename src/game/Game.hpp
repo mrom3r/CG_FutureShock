@@ -17,15 +17,17 @@ class Game {
     std::shared_ptr<Graphics> graphics{};
 
     GameObject map;
+    GameObject left_border;
+    GameObject right_border;
 
     std::vector<GameObject> game_objects{};
 
-    const float gravity{-0.0006};
+    const float gravity{-0.002};
 
 public:
 
     Tank player{Position{-0.5, 0.0}};
-    Tank enemy{Position{0.5, 0.0}};
+    Tank enemy{Position{0.6, 0.0}};
 
     explicit Game(const Graphics &_graphics);
 

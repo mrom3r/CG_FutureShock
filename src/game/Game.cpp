@@ -5,19 +5,29 @@ Game::Game(const Graphics &_graphics) {
     graphics = {std::make_shared<Graphics>(_graphics)};
 
     // map
-    map = GameObject{std::vector<Position>{{0.0,  -0.6},
+    map = GameObject{std::vector<Position>{{0.0,  0.2},
                                            {-1.0, -0.4},
                                            {-1.0, -1.0},
                                            {1.0,  -1.0},
                                            {1.0,  -0.3}}};
     map.collision = true;
+
+    // left border
+    left_border = GameObject{std::vector<Position>{{-0.3,  -1.0}, {-1.0, 0.3}, {-1.0, -1.0}}};
+    left_border.collision = true;
+
+    // right border
+    right_border = GameObject{std::vector<Position>{{0.3,  -1.0}, {1.0, 0.3}, {1.0, -1.0}}};
+    right_border.collision = true;
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
-    // insert map
+    // insert map parts
     game_objects.emplace_back(map);
+    game_objects.emplace_back(left_border);
+    game_objects.emplace_back(right_border);
 
     // bullets
     std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
@@ -31,47 +41,25 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
     game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
 
-    // update gravity player
-    Position old_player_position{player.translation};
-    player.translation += {0.0, gravity};
-    if (CollisionDetection::check_collision(player.get_body(), map)) {
-        player.translation = old_player_position;
+    // update player
+    if (CollisionDetection::check_collision(player.get_body(), map)
+    || CollisionDetection::check_collision(player.get_body(), left_border)
+    || CollisionDetection::check_collision(player.get_body(), right_border)
+            ) {
+        player.translation -= Position{0.0, gravity};
+    } else {
+        player.translation += Position{0.0, gravity};
     }
 
-    /*
-    for (GameObject &game_object : player.get_game_objects()) {
-        for (GameObject &other_game_object: game_objects) {
-            if (game_object.collision && other_game_object.collision) {
-                std::cout << "-------------------------" << std::endl;
-                if (CollisionDetection::check_collision(game_object, other_game_object)) {
-                    //player.translation = old_player_position + Position{0.0, 0.01};
-                    std::cout << "-------------------------" << std::endl;
-                    break;
-                }
-            }
-        }
+    // update enemy
+    if (CollisionDetection::check_collision(enemy.get_body(), map)
+        || CollisionDetection::check_collision(enemy.get_body(), left_border)
+        || CollisionDetection::check_collision(enemy.get_body(), right_border)
+            ) {
+        enemy.translation -= Position{0.0, gravity};
+    } else {
+        enemy.translation += Position{0.0, gravity};
     }
-     */
-
-    /*
-    enemy.translation += {0.0, gravity};
-
-    // update game objects
-    for (GameObject &game_object: game_objects) {
-        Position old_translation{game_object.translation};
-        // update gravity
-        player.translation += {0.0, gravity};
-        enemy.translation += {0.0, gravity};
-        // check collisions
-        for (GameObject &other_game_object: game_objects) {
-            if (game_object.id == other_game_object.id || !game_object.collision) continue;
-            if (CollisionDetection::check_collision(game_object, other_game_object)) {
-                std::cout << "collision" << std::endl;
-                game_object.translation = old_translation;
-            }
-        }
-    }
-    */
 }
 
 void Game::draw_game() {

@@ -36,10 +36,10 @@ public:
         float up{height / 2.0f + position.y};
         float down{height / -2.0f + position.y};
 
-        return {{left, down},
+        return {{left,         down},
                 {left + width, down},
                 {left + width, down + height},
-                {left, down + height}};
+                {left,         down + height}};
     }
 };
 

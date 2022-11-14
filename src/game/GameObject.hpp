@@ -7,7 +7,7 @@
 
 struct GameObject {
 
-    unsigned long long id;
+    unsigned long long id{};
 
     bool collision = false;
 
@@ -20,7 +20,7 @@ struct GameObject {
 
     GameObject() = default;
 
-    GameObject(std::vector<Position> positions, const Position &translation = {}, float rotation = 0,
+    explicit GameObject(std::vector<Position> positions, const Position &translation = {}, float rotation = 0,
                const Position &rotationPoint = {});
 
 };

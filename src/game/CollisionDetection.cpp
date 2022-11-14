@@ -201,11 +201,11 @@ bool CollisionDetection::check_collision(GameObject first, GameObject second) {
     std::vector<vec2> vertices1{};
     std::vector<vec2> vertices2{};
 
-    for (Position position : first.positions) {
+    for (Position position: first.positions) {
         vertices1.emplace_back(vec2{position.x, position.y});
     }
 
-    for (Position position : second.positions) {
+    for (Position position: second.positions) {
         vertices2.emplace_back(vec2{position.x, position.y});
     }
 

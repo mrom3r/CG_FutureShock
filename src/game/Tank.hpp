@@ -12,8 +12,6 @@
 
 class Tank {
 
-    std::shared_ptr<BulletManager> bullet_manager{};
-
     std::vector<GameObject> game_objects{};
     GameObject canon{};
 
@@ -28,7 +26,7 @@ public:
 
     Tank() = default;
 
-    explicit Tank(std::shared_ptr<BulletManager> _bullet_manager, Position _translation = {0.0, 0.0});
+    explicit Tank(Position _translation = {0.0, 0.0});
 
     std::vector<GameObject> get_game_objects();
 

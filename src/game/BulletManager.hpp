@@ -8,13 +8,20 @@
 #include "Tools.hpp"
 #include "Bullet.hpp"
 
+/**
+ * singleton class
+ */
 class BulletManager {
+
+    BulletManager() = default;
 
     const float bullet_size{0.05f};
 
     std::vector<Bullet> bullets{};
 
 public:
+
+    static BulletManager get_instance();
 
     void create_bullet(Position start, Position direction);
 

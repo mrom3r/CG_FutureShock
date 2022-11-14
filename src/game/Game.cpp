@@ -7,12 +7,6 @@ Game::Game(const Graphics &_graphics) {
     //background
     background = GameObject{std::vector<Position>{{0.0, -0.6}, {-1.0, -0.4}, {-1.0, -1.0}, {1.0, -1.0}, {1.0, -0.3}}};
     background.collision = true;
-
-    // player
-    player = Tank{std::make_shared<BulletManager>(bullet_manager), {-0.5, 0.0}};
-
-    // enemy
-    enemy = Tank{std::make_shared<BulletManager>(bullet_manager), {0.5, 0.0}};
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
@@ -22,7 +16,7 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     game_objects.emplace_back(background);
 
     // bullets
-    std::vector<GameObject> active_bullets{bullet_manager.get_active_bullets_game_objects()};
+    std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
     game_objects.insert(game_objects.end(), active_bullets.begin(),  active_bullets.end());
 
     // player

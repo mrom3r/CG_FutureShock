@@ -1,9 +1,7 @@
 
 #include "Tank.hpp"
 
-#include <utility>
-
-Tank::Tank(std::shared_ptr<BulletManager> _bullet_manager, Position _translation) : translation(_translation), bullet_manager(std::move(_bullet_manager)) {
+Tank::Tank(Position _translation) : translation(_translation) {
     GameObject body{rectangle_positions({}, 0.1, 0.05)};
     body.collision = true;
     game_objects.push_back(body);
@@ -47,7 +45,8 @@ void Tank::shoot_canon() {
     auto time_difference = std::chrono::steady_clock::now() - last_shot;
     if (time_difference > reloading_time) {
         std::cout << "shot" << std::endl;
-        bullet_manager->create_bullet(translation, {0.01, 0.01});
+        // TODO determine direction
+        BulletManager::get_instance().create_bullet(translation, {0.01, 0.01});
         last_shot = std::chrono::steady_clock::now();
     }
 }

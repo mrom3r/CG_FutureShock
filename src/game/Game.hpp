@@ -14,8 +14,6 @@ class Game {
 
     CollisionDetection collision_detection{};
 
-    BulletManager bullet_manager{};
-
     std::shared_ptr<Graphics> graphics{};
 
     GameObject background{};
@@ -26,8 +24,8 @@ class Game {
 
 public:
 
-    Tank player{};
-    Tank enemy{};
+    Tank player{Position{-0.5, 0.0}};
+    Tank enemy{Position{0.5, 0.0}};
 
     explicit Game(const Graphics &_graphics);
 

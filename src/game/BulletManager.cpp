@@ -8,7 +8,7 @@ BulletManager& BulletManager::get_instance() {
 
 void BulletManager::create_bullet(Position start, Position direction) {
     GameObject bullet_game_object{rectangle_positions(start, bullet_size, bullet_size)};
-    bullet_game_object.collision = true;
+    bullet_game_object.type = GameObject::BULLET;
     Bullet bullet{bullet_game_object, direction};
     bullets.emplace_back(bullet);
 }

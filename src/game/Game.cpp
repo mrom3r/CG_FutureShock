@@ -10,19 +10,19 @@ Game::Game(const Graphics &_graphics) {
                                            {-1.0, -1.0},
                                            {1.0,  -1.0},
                                            {1.0,  -1.0}}};
-    map.collision = true;
+    map.type = GameObject::MAP;
 
     // left triangle
     left_triangle = GameObject{std::vector<Position>{{-0.3, -1.0},
                                                      {-1.0, -0.3},
                                                      {-1.0, -1.0}}};
-    left_triangle.collision = true;
+    left_triangle.type = GameObject::MAP;
 
     // right triangle
     right_triangle = GameObject{std::vector<Position>{{0.3, -1.0},
                                                       {1.0, -0.3},
                                                       {1.0, -1.0}}};
-    right_triangle.collision = true;
+    right_triangle.type = GameObject::MAP;
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {

@@ -8,9 +8,11 @@
 
 struct GameObject {
 
-    unsigned long long id{};
+    enum Type {DEFAULT, MAP, TANK, BULLET};
 
-    bool collision = false;
+    Type type{DEFAULT};
+
+    unsigned long long id{};
 
     std::vector<Position> positions{};
 

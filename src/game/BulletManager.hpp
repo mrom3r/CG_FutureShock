@@ -4,6 +4,7 @@
 
 
 #include <vector>
+#include <algorithm>
 #include "GameObject.hpp"
 #include "Tools.hpp"
 #include "Bullet.hpp"

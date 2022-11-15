@@ -50,9 +50,9 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
         || CollisionDetection::check_collision(player.get_body(), left_border)
         || CollisionDetection::check_collision(player.get_body(), right_border)
             ) {
-        player.translation -= Position{0.0, gravity};
+        player.translation -= gravity;
     } else {
-        player.translation += Position{0.0, gravity};
+        player.translation += gravity;
     }
 
     // update enemy
@@ -60,9 +60,9 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
         || CollisionDetection::check_collision(enemy.get_body(), left_border)
         || CollisionDetection::check_collision(enemy.get_body(), right_border)
             ) {
-        enemy.translation -= Position{0.0, gravity};
+        enemy.translation -= gravity;
     } else {
-        enemy.translation += Position{0.0, gravity};
+        enemy.translation += gravity;
     }
 }
 

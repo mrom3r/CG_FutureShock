@@ -20,7 +20,7 @@ class Game {
 
     std::vector<GameObject> game_objects{};
 
-    const float gravity{-0.002};
+    const Position gravity{0.0, -0.002};
 
 public:
 

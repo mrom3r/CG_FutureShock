@@ -9,11 +9,11 @@ class Bullet {
 
     unsigned long long id;
 
-    GameObject game_object;
-
     Position direction{};
 
 public:
+
+    GameObject game_object;
 
     Bullet(GameObject bullet, const Position &direction);
 

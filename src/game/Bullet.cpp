@@ -3,7 +3,7 @@
 
 GameObject Bullet::get_new_bullet() {
     GameObject new_bullet_game_object{game_object};
-    new_bullet_game_object.translation += direction;
+    game_object.translation += direction;
     return new_bullet_game_object;
 }
 

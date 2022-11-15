@@ -12,7 +12,7 @@ struct GameObject {
 
     Type type{DEFAULT};
 
-    unsigned long long id{};
+    unsigned int id{};
 
     std::vector<Position> positions{};
 

@@ -6,6 +6,10 @@
 #include "Tank.hpp"
 
 Tank::Tank(Position _translation, Color _color) : translation(_translation), color(_color) {
+    static unsigned int counter = 0;
+    tank_id = counter++;
+
+
     std::vector<Position> body_positions{{-0.05, -0.025},
                                          {-0.04, -0.04},
                                          {0.04,  -0.04},
@@ -39,8 +43,10 @@ std::vector<GameObject> Tank::get_game_objects() {
 
     tmp_game_objects.emplace_back(tmp_canon);
 
+    float color_multiplier{static_cast<float>(lives) / static_cast<float>(start_lives)};
+    Color tmp_color{color.red * color_multiplier, color.green * color_multiplier, color.blue * color_multiplier, color.blue * color_multiplier};
     for (GameObject& gameObject : tmp_game_objects) {
-        gameObject.color = color;
+        gameObject.color = tmp_color;
     }
 
     return tmp_game_objects;
@@ -68,7 +74,7 @@ void Tank::shoot_canon() {
         glm::vec2 tmp_point{bullet_speed, 0.0f};
         tmp_point = tmp_point * rotation_matrix;
 
-        BulletManager::get_instance().create_bullet(translation + canon.translation, Position{tmp_point.x, tmp_point.y});
+        BulletManager::get_instance().create_bullet(translation + canon.translation, Position{tmp_point.x, tmp_point.y}, tank_id);
         last_shot = std::chrono::steady_clock::now();
     }
 }
@@ -80,4 +86,11 @@ GameObject Tank::get_body() {
     tmp_game_object.rotation += rotation;
 
     return tmp_game_object;
+}
+
+void Tank::was_hit() {
+    lives--;
+    if (lives <= 0) {
+        alive = false;
+    }
 }

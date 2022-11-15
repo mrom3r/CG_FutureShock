@@ -24,7 +24,7 @@ public:
 
     static BulletManager& get_instance();
 
-    void create_bullet(Position start, Position direction);
+    void create_bullet(Position start, Position direction, unsigned int tank_id);
 
     std::vector<GameObject> get_active_bullets_game_objects();
 

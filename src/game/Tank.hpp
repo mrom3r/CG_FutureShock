@@ -12,6 +12,12 @@
 
 class Tank {
 
+    unsigned int tank_id{};
+
+    bool alive{true};
+    int start_lives{5};
+    int lives{start_lives};
+
     std::vector<GameObject> game_objects{};
     Color color{};
 
@@ -42,6 +48,8 @@ public:
     void shoot_canon();
 
     GameObject get_body();
+
+    void was_hit();
 
 };
 

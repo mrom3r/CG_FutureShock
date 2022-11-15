@@ -7,8 +7,6 @@
 
 class Bullet {
 
-    unsigned long long id;
-
     Position direction{};
 
     Color color{1.0, 0.53,0.0};
@@ -20,7 +18,7 @@ public:
 
     GameObject game_object;
 
-    Bullet(GameObject bullet, const Position &direction);
+    Bullet(GameObject bullet, const Position &direction, unsigned int tank_id);
 
     GameObject get_new_bullet();
 

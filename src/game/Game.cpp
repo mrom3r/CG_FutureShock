@@ -28,6 +28,26 @@ Game::Game(const Graphics &_graphics) {
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
+    // player collision with map
+    if (CollisionDetection::check_collision(player.get_body(), map)
+        || CollisionDetection::check_collision(player.get_body(), left_triangle)
+        || CollisionDetection::check_collision(player.get_body(), right_triangle)
+            ) {
+        player.translation += gravity;
+    } else {
+        player.translation -= gravity;
+    }
+
+    // enemy collision with map
+    if (CollisionDetection::check_collision(enemy.get_body(), map)
+        || CollisionDetection::check_collision(enemy.get_body(), left_triangle)
+        || CollisionDetection::check_collision(enemy.get_body(), right_triangle)
+            ) {
+        enemy.translation += gravity;
+    } else {
+        enemy.translation -= gravity;
+    }
+
     // bullets
     std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
     game_objects.insert(game_objects.end(), active_bullets.begin(), active_bullets.end());
@@ -44,26 +64,6 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     // enemy
     std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
     game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
-
-    // player collision
-    if (CollisionDetection::check_collision(player.get_body(), map)
-        || CollisionDetection::check_collision(player.get_body(), left_triangle)
-        || CollisionDetection::check_collision(player.get_body(), right_triangle)
-            ) {
-        player.translation += gravity;
-    } else {
-        player.translation -= gravity;
-    }
-
-    // enemy collision
-    if (CollisionDetection::check_collision(enemy.get_body(), map)
-        || CollisionDetection::check_collision(enemy.get_body(), left_triangle)
-        || CollisionDetection::check_collision(enemy.get_body(), right_triangle)
-            ) {
-        enemy.translation += gravity;
-    } else {
-        enemy.translation -= gravity;
-    }
 }
 
 void Game::draw_game() {

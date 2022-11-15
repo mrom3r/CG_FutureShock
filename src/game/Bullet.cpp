@@ -17,7 +17,5 @@ GameObject Bullet::get_new_bullet() {
     return new_bullet_game_object;
 }
 
-Bullet::Bullet(GameObject bullet, const Position &direction) : game_object(std::move(bullet)), direction(direction) {
-    static unsigned long long counter = 0;
-    id = counter++;
+Bullet::Bullet(GameObject bullet, const Position &direction, unsigned int tank_id) : game_object(std::move(bullet)), direction(direction) {
 }

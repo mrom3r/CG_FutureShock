@@ -6,10 +6,10 @@ BulletManager& BulletManager::get_instance() {
     return bullet_manager;
 }
 
-void BulletManager::create_bullet(Position start, Position direction) {
+void BulletManager::create_bullet(Position start, Position direction, unsigned int tank_id) {
     GameObject bullet_game_object{rectangle_positions(start, bullet_size, bullet_size)};
     bullet_game_object.type = GameObject::BULLET;
-    Bullet bullet{bullet_game_object, direction};
+    Bullet bullet{bullet_game_object, direction, tank_id};
     bullets.emplace_back(bullet);
 }
 

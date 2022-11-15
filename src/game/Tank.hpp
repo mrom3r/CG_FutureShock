@@ -13,7 +13,7 @@
 class Tank {
 
     bool alive{true};
-    int start_lives{5};
+    int start_lives{10};
     int lives{start_lives};
 
     std::vector<GameObject> game_objects{};

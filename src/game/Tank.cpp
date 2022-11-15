@@ -44,7 +44,7 @@ std::vector<GameObject> Tank::get_game_objects() {
     tmp_game_objects.emplace_back(tmp_canon);
 
     float color_multiplier{static_cast<float>(lives) / static_cast<float>(start_lives)};
-    Color tmp_color{color.red, color.green, color.blue, color.alpha * color_multiplier};
+    Color tmp_color{color.red * color_multiplier, color.green * color_multiplier, color.blue * color_multiplier};
     for (GameObject& gameObject : tmp_game_objects) {
         gameObject.color = tmp_color;
     }

@@ -18,9 +18,9 @@ std::vector<GameObject> BulletManager::get_active_bullets_game_objects() {
     bullets.erase(
             std::remove_if(bullets.begin(), bullets.end(),
                            [](const Bullet & bullet) {
-                return bullet.game_object.translation.x > 10.0f
-                || bullet.game_object.translation.x < -10.0f
-                || bullet.game_object.translation.y < -10.0f;
+                return bullet.game_object.translation.x > 5.0f
+                || bullet.game_object.translation.x < -5.0f
+                || bullet.game_object.translation.y < -2.0f;
             }),
             bullets.end());
 

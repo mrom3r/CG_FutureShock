@@ -15,8 +15,8 @@ class Game {
     std::shared_ptr<Graphics> graphics{};
 
     GameObject map;
-    GameObject left_border;
-    GameObject right_border;
+    GameObject left_triangle;
+    GameObject right_triangle;
 
     std::vector<GameObject> game_objects{};
 

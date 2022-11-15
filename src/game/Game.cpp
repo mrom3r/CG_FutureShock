@@ -12,30 +12,30 @@ Game::Game(const Graphics &_graphics) {
                                            {1.0,  -1.0}}};
     map.collision = true;
 
-    // left border
-    left_border = GameObject{std::vector<Position>{{-0.3, -1.0},
-                                                   {-1.0, -0.3},
-                                                   {-1.0, -1.0}}};
-    left_border.collision = true;
+    // left triangle
+    left_triangle = GameObject{std::vector<Position>{{-0.3, -1.0},
+                                                     {-1.0, -0.3},
+                                                     {-1.0, -1.0}}};
+    left_triangle.collision = true;
 
-    // right border
-    right_border = GameObject{std::vector<Position>{{0.3, -1.0},
-                                                    {1.0, -0.3},
-                                                    {1.0, -1.0}}};
-    right_border.collision = true;
+    // right triangle
+    right_triangle = GameObject{std::vector<Position>{{0.3, -1.0},
+                                                      {1.0, -0.3},
+                                                      {1.0, -1.0}}};
+    right_triangle.collision = true;
 }
 
 void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 1000000000>> duration) {
     game_objects.clear();
 
-    // insert map parts
-    game_objects.emplace_back(map);
-    game_objects.emplace_back(left_border);
-    game_objects.emplace_back(right_border);
-
     // bullets
     std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
     game_objects.insert(game_objects.end(), active_bullets.begin(), active_bullets.end());
+
+    // insert map parts
+    game_objects.emplace_back(map);
+    game_objects.emplace_back(left_triangle);
+    game_objects.emplace_back(right_triangle);
 
     // player
     std::vector<GameObject> player_game_objects{player.get_game_objects()};
@@ -47,8 +47,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 
     // player collision
     if (CollisionDetection::check_collision(player.get_body(), map)
-        || CollisionDetection::check_collision(player.get_body(), left_border)
-        || CollisionDetection::check_collision(player.get_body(), right_border)
+        || CollisionDetection::check_collision(player.get_body(), left_triangle)
+        || CollisionDetection::check_collision(player.get_body(), right_triangle)
             ) {
         player.translation += gravity;
     } else {
@@ -57,8 +57,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
 
     // enemy collision
     if (CollisionDetection::check_collision(enemy.get_body(), map)
-        || CollisionDetection::check_collision(enemy.get_body(), left_border)
-        || CollisionDetection::check_collision(enemy.get_body(), right_border)
+        || CollisionDetection::check_collision(enemy.get_body(), left_triangle)
+        || CollisionDetection::check_collision(enemy.get_body(), right_triangle)
             ) {
         enemy.translation += gravity;
     } else {

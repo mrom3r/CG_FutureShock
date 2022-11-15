@@ -16,7 +16,7 @@ Tank::Tank(Position _translation, Color _color) : translation(_translation), col
     body.collision = true;
     game_objects.push_back(body);
 
-    GameObject tower{rectangle_positions({}, 0.05, 0.03),
+    GameObject tower{rectangle_positions({}, 0.06, 0.03),
                      {0.0f, 0.04}};
     game_objects.push_back(tower);
 
@@ -45,13 +45,13 @@ std::vector<GameObject> Tank::get_game_objects() {
 }
 
 void Tank::lift_canon() {
-    if (canon.rotation < 310) {
+    if (canon.rotation < 315) {
         canon.rotation += canon_speed;
     }
 }
 
 void Tank::lower_canon() {
-    if (canon.rotation > 230) {
+    if (canon.rotation > 225) {
         canon.rotation -= canon_speed;
     }
 }

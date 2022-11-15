@@ -16,7 +16,7 @@ class BulletManager {
 
     BulletManager() = default;
 
-    const float bullet_size{0.05f};
+    const float bullet_size{0.02f};
 
     std::vector<Bullet> bullets{};
 

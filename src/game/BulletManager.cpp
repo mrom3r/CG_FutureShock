@@ -7,12 +7,7 @@ BulletManager& BulletManager::get_instance() {
 }
 
 void BulletManager::create_bullet(Position start, Position direction, unsigned int tank_id) {
-    GameObject bullet_game_object{{
-        {start.x - bullet_size, start.y},
-        {start.x, start.y - bullet_size},
-        {start.x + bullet_size, start.y},
-        {start.x, start.y + bullet_size}}
-    };
+    GameObject bullet_game_object{circle_positions(start, bullet_size, 8)};
     bullet_game_object.type = GameObject::BULLET;
     Bullet bullet{bullet_game_object, direction, tank_id};
     bullets.emplace_back(bullet);

@@ -1,7 +1,7 @@
 
 #include "BulletManager.hpp"
 
-BulletManager BulletManager::get_instance() {
+BulletManager& BulletManager::get_instance() {
     static BulletManager bullet_manager{};
     return bullet_manager;
 }

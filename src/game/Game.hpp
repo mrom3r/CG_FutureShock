@@ -20,12 +20,12 @@ class Game {
 
     std::vector<GameObject> game_objects{};
 
-    const Position gravity{0.0, 0.002};
+    const Position gravity{0.0, 0.003};
 
 public:
 
-    Tank player{Position{-0.5, 0.0}, Color{0.0f, 1.0f, 0.0f}};
-    Tank enemy{Position{0.6, 0.0}, Color{1.0f, 0.0f, 0.0f}};
+    Tank player{Position{-0.7, 0.0}, Color{0.0f, 1.0f, 0.0f}};
+    Tank enemy{Position{0.7, 0.0}, Color{1.0f, 0.0f, 0.0f}};
 
     explicit Game(const Graphics &_graphics);
 

@@ -3,6 +3,10 @@
 
 GameObject Bullet::get_new_bullet() {
     GameObject new_bullet_game_object{game_object};
+
+    // add color
+    game_object.color = color;
+
     // add direction
     game_object.translation += direction;
     // add air resistance

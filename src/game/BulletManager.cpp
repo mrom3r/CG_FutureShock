@@ -25,7 +25,6 @@ std::vector<GameObject> BulletManager::get_active_bullets_game_objects() {
                            }),
             bullets.end());
 
-
     std::vector<GameObject> bullet_game_objects{};
 
     for (Bullet &bullet: bullets) {
@@ -42,5 +41,3 @@ void BulletManager::deactivate_bullet(unsigned int bullet_id) {
         }
     }
 }
-
-

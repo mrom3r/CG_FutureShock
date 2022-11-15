@@ -36,13 +36,17 @@ int main() {
             game.player.lift_canon();
         }
         if (glfwGetKey(local_window, GLFW_KEY_A) == GLFW_PRESS) {
-            game.player.translation += Position{-0.001, 0.0};
+            if (game.player.translation.x > -1.0) {
+                game.player.translation += Position{-0.001, 0.0};
+            }
         }
         if (glfwGetKey(local_window, GLFW_KEY_S) == GLFW_PRESS) {
             game.player.lower_canon();
         }
         if (glfwGetKey(local_window, GLFW_KEY_D) == GLFW_PRESS) {
-            game.player.translation += Position{0.001, 0.0};
+            if (game.player.translation.x < 1.0) {
+                game.player.translation += Position{0.001, 0.0};
+            }
         }
         if (glfwGetKey(local_window, GLFW_KEY_SPACE) == GLFW_PRESS) {
             game.player.shoot_canon();
@@ -52,13 +56,17 @@ int main() {
             game.enemy.lift_canon();
         }
         if (glfwGetKey(local_window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-            game.enemy.translation += Position{-0.001, 0.0};
+            if (game.enemy.translation.x > -1.0) {
+                game.enemy.translation += Position{-0.001, 0.0};
+            }
         }
         if (glfwGetKey(local_window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             game.enemy.lower_canon();
         }
         if (glfwGetKey(local_window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-            game.enemy.translation += Position{0.001, 0.0};
+            if (game.enemy.translation.x < 1.0) {
+                game.enemy.translation += Position{0.001, 0.0};
+            }
         }
         if (glfwGetKey(local_window, GLFW_KEY_ENTER) == GLFW_PRESS) {
             game.enemy.shoot_canon();

@@ -3,6 +3,8 @@
 
 GameObject Bullet::get_new_bullet() {
     GameObject new_bullet_game_object{game_object};
+    // add tank id
+    new_bullet_game_object.tank_id = tank_id;
 
     // add color
     game_object.color = color;
@@ -17,5 +19,4 @@ GameObject Bullet::get_new_bullet() {
     return new_bullet_game_object;
 }
 
-Bullet::Bullet(GameObject bullet, const Position &direction, unsigned int tank_id) : game_object(std::move(bullet)), direction(direction) {
-}
+Bullet::Bullet(GameObject bullet, const Position &direction, unsigned int _tank_id) : game_object(std::move(bullet)), direction(direction), tank_id(_tank_id) {}

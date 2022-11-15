@@ -12,8 +12,6 @@
 
 class Tank {
 
-    unsigned int tank_id{};
-
     bool alive{true};
     int start_lives{5};
     int lives{start_lives};
@@ -31,6 +29,8 @@ class Tank {
     const float bullet_speed{0.035f};
 
 public:
+
+    unsigned int tank_id{};
 
     Position translation{};
     float rotation{};

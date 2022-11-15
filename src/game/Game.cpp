@@ -48,8 +48,28 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
         enemy.translation -= gravity;
     }
 
-    // bullets
+    // bullet collision
     std::vector<GameObject> active_bullets{BulletManager::get_instance().get_active_bullets_game_objects()};
+    std::vector<GameObject> player_game_objects{player.get_game_objects()};
+    std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
+    for (GameObject &bullet: active_bullets) {
+        if (bullet.tank_id != player.tank_id) {
+            for (GameObject &player_game_object: player_game_objects) {
+                if (CollisionDetection::check_collision(bullet, player_game_object)) {
+                    player.was_hit();
+                }
+            }
+        }
+        if (bullet.tank_id != enemy.tank_id) {
+            for (GameObject &enemy_game_object: enemy_game_objects) {
+                if (CollisionDetection::check_collision(bullet, enemy_game_object)) {
+                    enemy.was_hit();
+                }
+            }
+        }
+    }
+
+    // bullets
     game_objects.insert(game_objects.end(), active_bullets.begin(), active_bullets.end());
 
     // insert map parts
@@ -57,12 +77,8 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     game_objects.emplace_back(left_triangle);
     game_objects.emplace_back(right_triangle);
 
-    // player
-    std::vector<GameObject> player_game_objects{player.get_game_objects()};
+    // insert players
     game_objects.insert(game_objects.end(), player_game_objects.begin(), player_game_objects.end());
-
-    // enemy
-    std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
     game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
 }
 

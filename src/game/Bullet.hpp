@@ -16,9 +16,11 @@ class Bullet {
 
 public:
 
+    unsigned int tank_id;
+
     GameObject game_object;
 
-    Bullet(GameObject bullet, const Position &direction, unsigned int tank_id);
+    Bullet(GameObject bullet, const Position &direction, unsigned int _tank_id);
 
     GameObject get_new_bullet();
 

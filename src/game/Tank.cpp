@@ -68,9 +68,10 @@ void Tank::shoot_canon() {
     auto time_difference = std::chrono::steady_clock::now() - last_shot;
     if (time_difference > reloading_time) {
 
-        float rotation_rad = (canon.rotation - 180.0f) / 180.0f * 3.14159265358979323846f;
-        glm::mat2 rotation_matrix{std::cos(rotation_rad), -std::sin(rotation_rad),
-                                  std::sin(rotation_rad), std::cos(rotation_rad)};
+        float rotation_rad = (canon.rotation + 90.0f) / 180.0f * 3.14159265358979323846f;
+
+        glm::mat2 rotation_matrix{std::sin(rotation_rad), std::cos(rotation_rad),
+                                  std::cos(rotation_rad), -std::sin(rotation_rad)};
         glm::vec2 tmp_point{bullet_speed, 0.0f};
         tmp_point = tmp_point * rotation_matrix;
 

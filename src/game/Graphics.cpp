@@ -1,6 +1,5 @@
 
 #include "Graphics.hpp"
-#include "GameObject.hpp"
 
 GLFWwindow *window;
 
@@ -112,7 +111,8 @@ bool Graphics::closeWindow() {
 void Graphics::drawGameObject(const GameObject &game_object) const {
     // define color
     int vertexColorLocation = glGetUniformLocation(program_ID, "myColor");
-    glUniform4f(vertexColorLocation, game_object.color.red, game_object.color.green, game_object.color.blue, game_object.color.alpha);
+    glUniform4f(vertexColorLocation, game_object.color.red, game_object.color.green, game_object.color.blue,
+                game_object.color.alpha);
 
     // Use shader
     glUseProgram(program_ID);

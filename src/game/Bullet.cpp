@@ -22,7 +22,9 @@ GameObject Bullet::get_new_bullet() {
     return new_bullet_game_object;
 }
 
-Bullet::Bullet(GameObject bullet, const Position &direction, unsigned int _tank_id) : game_object(std::move(bullet)), direction(direction), tank_id(_tank_id) {
+Bullet::Bullet(GameObject bullet, const Position &direction, unsigned int _tank_id) : game_object(std::move(bullet)),
+                                                                                      direction(direction),
+                                                                                      tank_id(_tank_id) {
     static unsigned int counter = 0;
     bullet_id = counter++;
 }

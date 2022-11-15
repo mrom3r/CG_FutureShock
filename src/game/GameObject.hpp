@@ -8,7 +8,9 @@
 
 struct GameObject {
 
-    enum Type {DEFAULT, MAP, TANK, BULLET};
+    enum Type {
+        DEFAULT, MAP, TANK, BULLET
+    };
 
     Type type{DEFAULT};
 

@@ -45,7 +45,7 @@ std::vector<GameObject> Tank::get_game_objects() {
 
     float color_multiplier{static_cast<float>(lives) / static_cast<float>(start_lives)};
     Color tmp_color{color.red * color_multiplier, color.green * color_multiplier, color.blue * color_multiplier};
-    for (GameObject& gameObject : tmp_game_objects) {
+    for (GameObject &gameObject: tmp_game_objects) {
         gameObject.color = tmp_color;
     }
 
@@ -75,7 +75,8 @@ void Tank::shoot_canon() {
         glm::vec2 tmp_point{bullet_speed, 0.0f};
         tmp_point = tmp_point * rotation_matrix;
 
-        BulletManager::get_instance().create_bullet(translation + canon.translation, Position{tmp_point.x, tmp_point.y}, tank_id);
+        BulletManager::get_instance().create_bullet(translation + canon.translation, Position{tmp_point.x, tmp_point.y},
+                                                    tank_id);
         last_shot = std::chrono::steady_clock::now();
     }
 }

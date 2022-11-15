@@ -22,7 +22,7 @@ class BulletManager {
 
 public:
 
-    static BulletManager& get_instance();
+    static BulletManager &get_instance();
 
     void create_bullet(Position start, Position direction, unsigned int tank_id);
 

@@ -1,4 +1,8 @@
 
+#include <glm/detail/type_mat.hpp>
+#include <complex>
+#include <glm/vec2.hpp>
+#include <glm/detail/type_mat2x2.hpp>
 #include "Tank.hpp"
 
 Tank::Tank(Position _translation, Color _color) : translation(_translation), color(_color) {
@@ -55,9 +59,14 @@ void Tank::lower_canon() {
 void Tank::shoot_canon() {
     auto time_difference = std::chrono::steady_clock::now() - last_shot;
     if (time_difference > reloading_time) {
-        std::cout << "shot" << std::endl;
-        // TODO determine direction
-        BulletManager::get_instance().create_bullet(translation, {0.01, 0.01});
+
+        float rotation_rad = (canon.rotation - 180.0f) / 180.0f * 3.14159265358979323846f;
+        glm::mat2 rotation_matrix{std::cos(rotation_rad), -std::sin(rotation_rad),
+                                  std::sin(rotation_rad), std::cos(rotation_rad)};
+        glm::vec2 tmp_point{bullet_speed, 0.0f};
+        tmp_point = tmp_point * rotation_matrix;
+
+        BulletManager::get_instance().create_bullet(translation + canon.translation, Position{tmp_point.x, tmp_point.y});
         last_shot = std::chrono::steady_clock::now();
     }
 }

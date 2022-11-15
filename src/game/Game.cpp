@@ -45,24 +45,24 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
     std::vector<GameObject> enemy_game_objects{enemy.get_game_objects()};
     game_objects.insert(game_objects.end(), enemy_game_objects.begin(), enemy_game_objects.end());
 
-    // update player
+    // player collision
     if (CollisionDetection::check_collision(player.get_body(), map)
         || CollisionDetection::check_collision(player.get_body(), left_border)
         || CollisionDetection::check_collision(player.get_body(), right_border)
             ) {
-        player.translation -= gravity;
-    } else {
         player.translation += gravity;
+    } else {
+        player.translation -= gravity;
     }
 
-    // update enemy
+    // enemy collision
     if (CollisionDetection::check_collision(enemy.get_body(), map)
         || CollisionDetection::check_collision(enemy.get_body(), left_border)
         || CollisionDetection::check_collision(enemy.get_body(), right_border)
             ) {
-        enemy.translation -= gravity;
-    } else {
         enemy.translation += gravity;
+    } else {
+        enemy.translation -= gravity;
     }
 }
 

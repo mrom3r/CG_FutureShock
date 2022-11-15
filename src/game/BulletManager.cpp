@@ -14,13 +14,13 @@ void BulletManager::create_bullet(Position start, Position direction) {
 }
 
 std::vector<GameObject> BulletManager::get_active_bullets_game_objects() {
-    // delete bullets out of screen
+    // delete bullets far out of screen
     bullets.erase(
             std::remove_if(bullets.begin(), bullets.end(),
                            [](const Bullet & bullet) {
-                return bullet.game_object.translation.x > 1.2f
-                || bullet.game_object.translation.x < -1.2f
-                || bullet.game_object.translation.y < -1.2f;
+                return bullet.game_object.translation.x > 10.0f
+                || bullet.game_object.translation.x < -10.0f
+                || bullet.game_object.translation.y < -10.0f;
             }),
             bullets.end());
 

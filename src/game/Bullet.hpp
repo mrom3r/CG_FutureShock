@@ -11,6 +11,9 @@ class Bullet {
 
     Position direction{};
 
+    float air_resistance_multiplier{0.99f};
+    Position bullet_gravity{0.0, 0.0005};
+
 public:
 
     GameObject game_object;

@@ -18,9 +18,11 @@ class Tank {
     GameObject body{};
     GameObject canon{};
 
-    float canon_speed{1.0f};
-    std::chrono::milliseconds reloading_time{1000};
+    const float canon_speed{1.0f};
+    std::chrono::milliseconds reloading_time{500};
     std::chrono::time_point<std::chrono::steady_clock> last_shot{};
+
+    const float bullet_speed{0.035f};
 
 public:
 

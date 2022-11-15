@@ -28,6 +28,8 @@ public:
 
     std::vector<GameObject> get_active_bullets_game_objects();
 
+    void deactivate_bullet(unsigned int bullet_id);
+
 };
 
 

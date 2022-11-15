@@ -57,6 +57,7 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
             for (GameObject &player_game_object: player_game_objects) {
                 if (CollisionDetection::check_collision(bullet, player_game_object)) {
                     player.was_hit();
+                    BulletManager::get_instance().deactivate_bullet(bullet.bullet_id);
                 }
             }
         }
@@ -64,6 +65,7 @@ void Game::update_game(std::chrono::duration<long long int, std::ratio<1, 100000
             for (GameObject &enemy_game_object: enemy_game_objects) {
                 if (CollisionDetection::check_collision(bullet, enemy_game_object)) {
                     enemy.was_hit();
+                    BulletManager::get_instance().deactivate_bullet(bullet.bullet_id);
                 }
             }
         }

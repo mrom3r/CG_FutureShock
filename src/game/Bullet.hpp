@@ -16,6 +16,10 @@ class Bullet {
 
 public:
 
+    bool active{true};
+
+    unsigned int bullet_id{};
+
     unsigned int tank_id;
 
     GameObject game_object;

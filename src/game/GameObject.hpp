@@ -14,6 +14,8 @@ struct GameObject {
 
     unsigned int id{};
 
+    unsigned int bullet_id{};
+
     unsigned int tank_id{};
 
     std::vector<Position> positions{};

@@ -54,10 +54,6 @@ public:
 
     std::shared_ptr<GLFWwindow *> window_pointer{};
 
-    void drawTriangle(Position first, Position second, Position third, float rotation, Position rotation_point) const;
-
-    void drawRectangle(Position position, float width, float height) const;
-
     void drawGameObject(const GameObject &game_object) const;
 
     Graphics();

@@ -3,6 +3,20 @@
 
 //  updated version originally created by Igor Kroitor on 29/12/15.
 //-----------------------------------------------------------------------------
+// DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//         Version 2, December 2004
+//
+// Copyright (C) 2016 Igor Kroitor <igor.kroitor@gmail.com>
+//
+// Everyone is permitted to copy and distribute verbatim or modified
+//         copies of this license document, and changing it is allowed as long
+//         as the name is changed.
+//
+// DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//         TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+//
+// 0. You just DO WHAT THE FUCK YOU WANT TO.
+//-----------------------------------------------------------------------------
 // Gilbert-Johnson-Keerthi (GJK) collision detection algorithm in 2D
 // http://www.dyn4j.org/2010/04/gjk-gilbert-johnson-keerthi/
 // http://mollyrocket.com/849

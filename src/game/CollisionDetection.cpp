@@ -2,7 +2,7 @@
 #include "CollisionDetection.hpp"
 
 
-//  Created by Igor Kroitor on 29/12/15.
+//  updated version originally created by Igor Kroitor on 29/12/15.
 //-----------------------------------------------------------------------------
 // Gilbert-Johnson-Keerthi (GJK) collision detection algorithm in 2D
 // http://www.dyn4j.org/2010/04/gjk-gilbert-johnson-keerthi/
@@ -123,7 +123,7 @@ int gjk(const vec2 *vertices1, size_t count1,
 
     d = negate(a); // The next search direction is always towards the origin, so the next search direction is negate(a)
 
-    while (1) {
+    while (true) {
         iter_count++;
 
         a = simplex[++index] = support(vertices1, count1, vertices2, count2, d);
@@ -169,19 +169,6 @@ int gjk(const vec2 *vertices1, size_t count1,
         simplex[1] = simplex[2]; // swap element in the middle (point B)
         --index;
     }
-
-    return 0;
-}
-
-float Perturbation() {
-    return ((float) rand() / (float) RAND_MAX) * FLT_EPSILON * 100.0f * ((rand() % 2) ? 1.0f : -1.0f);
-}
-
-vec2 Jostle(vec2 a) {
-    vec2 b;
-    b.x = a.x + Perturbation();
-    b.y = a.y + Perturbation();
-    return b;
 }
 
 bool CollisionDetection::check_collision(const GameObject &first, const GameObject &second) {

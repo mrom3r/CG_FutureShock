@@ -14,8 +14,8 @@ Graphics::Graphics() {
     initializeVertexBuffer();
 
     // Create and compile our GLSL program from the shaders
-    program_ID = LoadShaders(R"(..\src\game\shader\VertexShader.vertexshader)",
-                             R"(..\src\game\shader\FragmentShader.fragmentshader)");
+    program_ID = LoadShaders(R"(..\game\shader\VertexShader.vertexshader)",
+                             R"(..\game\shader\FragmentShader.fragmentshader)");
 
     window_pointer = std::make_shared<GLFWwindow *>(window);
 }
